@@ -1,10 +1,10 @@
 import { useLocation, NavLink } from "react-router-dom";
 
-interface Props {
+interface HeaderProps {
   isLogin?: boolean;
 }
 
-function Header({ isLogin = false }: Props) {
+function Header({ isLogin = false }: HeaderProps) {
   const location = useLocation();
   return (
     <header>

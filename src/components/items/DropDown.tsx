@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-interface Props {
+interface DropDownProps {
   setOrder: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -20,7 +20,7 @@ const sortOptions: sort[] = [
   },
 ];
 
-function DropDown({ setOrder }: Props) {
+function DropDown({ setOrder }: DropDownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItemText, setSelectedItemText] = useState("최신순");
 

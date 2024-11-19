@@ -2,7 +2,7 @@ import Image from "components/common/Image";
 import { formatDate } from "utils/formatDate";
 import { formatPriceToKRW } from "utils/formatPrice";
 
-interface Props {
+interface DetailProductProps {
   name: string;
   description: string;
   images: string[];
@@ -24,7 +24,7 @@ function DetailProduct({
   ownerNickname,
   updatedAt,
   isFavorite,
-}: Props) {
+}: DetailProductProps) {
   return (
     <div className='product-detail-contents'>
       <Image images={images} name={name} />

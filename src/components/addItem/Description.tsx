@@ -1,15 +1,27 @@
-import { ChangeEvent, Dispatch, FocusEvent, ReactNode } from "react";
-import { InputAction } from "pages/AddItem";
+import {
+  ChangeEvent,
+  Dispatch,
+  FocusEvent,
+  PropsWithChildren,
+  ReactNode,
+} from "react";
+import { ProductInputAction } from "types/product";
 
-interface Props {
+interface DescriptionProps {
   name: string;
   value: string;
   placeholder: string;
   children: ReactNode;
-  dispatch: Dispatch<InputAction>;
+  dispatch: Dispatch<ProductInputAction>;
 }
 
-function Description({ children, name, value, placeholder, dispatch }: Props) {
+function Description({
+  children,
+  name,
+  value,
+  placeholder,
+  dispatch,
+}: PropsWithChildren<DescriptionProps>) {
   const setDescription = (value: string) =>
     dispatch({ type: "SET_DESCRIPTION", payload: value });
 

@@ -1,15 +1,20 @@
-import { InputAction } from "pages/AddItem";
-import { ChangeEvent, Dispatch, ReactNode } from "react";
+import { ProductInputAction } from "types/product";
+import { ChangeEvent, Dispatch, PropsWithChildren, ReactNode } from "react";
 import { formatPrice, formatToPrice } from "utils/formatPrice";
 
-interface Props {
+interface PriceInputProps {
   name: string;
   value: number;
   children: ReactNode;
-  dispatch: Dispatch<InputAction>;
+  dispatch: Dispatch<ProductInputAction>;
 }
 
-function PriceInput({ children, name, value, dispatch }: Props) {
+function PriceInput({
+  children,
+  name,
+  value,
+  dispatch,
+}: PropsWithChildren<PriceInputProps>) {
   /**
    * String 타입의 입력을 금액 형식으로 formating해 input에 출력
    */

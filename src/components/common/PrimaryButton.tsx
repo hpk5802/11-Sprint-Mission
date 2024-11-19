@@ -1,6 +1,6 @@
-import { ReactNode, useState } from "react";
+import { PropsWithChildren, ReactNode, useState } from "react";
 
-interface Props {
+interface PrimaryButtonProps {
   type?: "button" | "submit" | "reset";
   name: string;
   disabled?: boolean;
@@ -14,7 +14,7 @@ function PrimaryButton({
   name,
   disabled,
   onClick,
-}: Props) {
+}: PropsWithChildren<PrimaryButtonProps>) {
   const [isHover, setIsHover] = useState(false);
   return (
     <button

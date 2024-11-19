@@ -7,46 +7,10 @@ import Header from "components/common/Header";
 import PrimaryButton from "components/common/PrimaryButton";
 import { FormEvent, useEffect, useReducer, useState } from "react";
 import { postProduct } from "utils/api";
-
-interface InputState {
-  images: string[];
-  name: string;
-  description: string;
-  price: number;
-  tags: string[];
-}
-
-export type InputAction =
-  | { type: "SET_IMAGES"; payload: string[] }
-  | { type: "SET_NAME"; payload: string }
-  | { type: "SET_DESCRIPTION"; payload: string }
-  | { type: "SET_PRICE"; payload: number }
-  | { type: "SET_TAGS"; payload: string[] };
-
-const INITIAL_INPUT: InputState = {
-  images: [],
-  name: "",
-  description: "",
-  price: 0,
-  tags: [],
-};
-
-const inputReducer = (state: InputState, action: InputAction): InputState => {
-  const target = action.type.split("_")[1].toLowerCase();
-  switch (action.type) {
-    case "SET_IMAGES":
-    case "SET_NAME":
-    case "SET_DESCRIPTION":
-    case "SET_PRICE":
-    case "SET_TAGS":
-      return { ...state, [target]: action.payload };
-    default:
-      return state;
-  }
-};
+import { INITIAL_INPUT, ProductInputReducer } from "reducers/productReducer";
 
 function AddItem() {
-  const [userInput, dispatch] = useReducer(inputReducer, INITIAL_INPUT);
+  const [userInput, dispatch] = useReducer(ProductInputReducer, INITIAL_INPUT);
   const { images, name, description, price, tags } = userInput;
   const [isFormValid, setIsFormValid] = useState(false);
   const handleSubmit = (e: FormEvent) => {

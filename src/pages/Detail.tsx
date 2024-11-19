@@ -90,7 +90,10 @@ function Detail() {
   const handleSubmit = useCallback(
     (e: FormEvent) => {
       e.preventDefault();
-      postComment(id!, { content: newComment }); // Jwt Token 추가 예정
+      if (!id) {
+        throw new Error("Id is null");
+      }
+      postComment(id, { content: newComment }); // Jwt Token 추가 예정
       setNewComment("");
     },
     [id, newComment]
@@ -102,17 +105,20 @@ function Detail() {
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {
       const [entry] = entries; // 감시 대상 : endRef
-      if (entry.isIntersecting && nextCursor) {
+      if (entry.isIntersecting && nextCursor && id) {
         // 대상이 viewport에 들어왔을 때, nextCursor가 null이 아닌경우 다음 댓글 요청
-        loadInquiryById(id!, nextCursor);
+        loadInquiryById(id, nextCursor);
       }
     },
     [id, nextCursor, loadInquiryById]
   );
 
   useEffect(() => {
-    loadProductById(id!);
-    loadInquiryById(id!);
+    if (!id) {
+      throw new Error("Id is null");
+    }
+    loadProductById(id);
+    loadInquiryById(id);
   }, [id, loadProductById, loadInquiryById]);
 
   /**

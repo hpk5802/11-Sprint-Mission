@@ -1,4 +1,4 @@
-interface Props {
+interface PaginationsProps {
   totalPage: number;
   currentPage: number;
   handlePageChange: (value: number) => void;
@@ -6,7 +6,11 @@ interface Props {
 
 const PAGES_PER_SHOW = 5; // 페이지 네이션에 표시할 페이지 수
 
-function Paginations({ totalPage, currentPage, handlePageChange }: Props) {
+function Paginations({
+  totalPage,
+  currentPage,
+  handlePageChange,
+}: PaginationsProps) {
   const currentGroup = Math.ceil(currentPage / PAGES_PER_SHOW); // 페이지 그룹
   const startPage = (currentGroup - 1) * PAGES_PER_SHOW + 1; // 첫 페이지
   const endPage = Math.min(startPage + PAGES_PER_SHOW - 1, totalPage); // 마지막 페이지

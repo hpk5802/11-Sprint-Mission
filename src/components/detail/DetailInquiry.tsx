@@ -3,14 +3,14 @@ import DropDownInquiry from "./DropDownInquiry";
 import { calculateGapTime } from "utils/formatDate";
 import { updateComment, updateCommentInterface } from "utils/api";
 
-interface Props {
+interface DetailInquiryProps {
   id: string;
   content: string;
   writer: any;
   updatedAt: string;
 }
 
-function DetailInquiry({ id, content, writer, updatedAt }: Props) {
+function DetailInquiry({ id, content, writer, updatedAt }: DetailInquiryProps) {
   const [isEditing, setIsEditing] = useState(false); // 수정 상태를 할당할 state
   const [comment, setComment] = useState(content); // 문의하기 text를 할당할 state
 

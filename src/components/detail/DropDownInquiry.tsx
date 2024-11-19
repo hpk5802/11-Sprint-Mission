@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-interface Props {
+interface DropDownInquiryProps {
   setIsEditting: (value: boolean) => void;
 }
 
-function DropDownInquiry({ setIsEditting }: Props) {
+function DropDownInquiry({ setIsEditting }: DropDownInquiryProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleEdit = () => {

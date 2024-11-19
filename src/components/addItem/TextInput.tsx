@@ -1,15 +1,27 @@
-import { InputAction } from "pages/AddItem";
-import { ChangeEvent, Dispatch, FocusEvent, ReactNode } from "react";
+import { ProductInputAction } from "types/product";
+import {
+  ChangeEvent,
+  Dispatch,
+  FocusEvent,
+  PropsWithChildren,
+  ReactNode,
+} from "react";
 
-interface Props {
+interface TextInputProps {
   name: string;
   placeholder: string;
   value: string;
   children: ReactNode;
-  dispatch: Dispatch<InputAction>;
+  dispatch: Dispatch<ProductInputAction>;
 }
 
-function TextInput({ children, name, placeholder, value, dispatch }: Props) {
+function TextInput({
+  children,
+  name,
+  placeholder,
+  value,
+  dispatch,
+}: PropsWithChildren<TextInputProps>) {
   const setName = (value: string) =>
     dispatch({ type: "SET_NAME", payload: value });
 

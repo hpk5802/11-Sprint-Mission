@@ -1,21 +1,27 @@
 import {
   ChangeEvent,
   Dispatch,
+  PropsWithChildren,
   ReactNode,
   useEffect,
   useRef,
   useState,
 } from "react";
-import { InputAction } from "pages/AddItem";
+import { ProductInputAction } from "types/product";
 
-interface Props {
+interface ImgFileInputProps {
   images: string[];
   name: string;
   children: ReactNode;
-  dispatch: Dispatch<InputAction>;
+  dispatch: Dispatch<ProductInputAction>;
 }
 
-function ImgFileInput({ children, images, name, dispatch }: Props) {
+function ImgFileInput({
+  children,
+  images,
+  name,
+  dispatch,
+}: PropsWithChildren<ImgFileInputProps>) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [showWarn, setShowWarn] = useState(false); // 이미지를 1개 이상 추가하려고 할 때를 위한 state
   const isFilled = images.length > 0;

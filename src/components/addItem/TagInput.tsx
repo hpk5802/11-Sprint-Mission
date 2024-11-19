@@ -1,15 +1,27 @@
-import { useState, ReactNode, Dispatch, KeyboardEvent } from "react";
-import { InputAction } from "pages/AddItem";
+import {
+  useState,
+  ReactNode,
+  Dispatch,
+  KeyboardEvent,
+  PropsWithChildren,
+} from "react";
+import { ProductInputAction } from "types/product";
 
-interface Props {
+interface TagInputProps {
   name: string;
   tags: string[];
   placeholder: string;
-  dispatch: Dispatch<InputAction>;
+  dispatch: Dispatch<ProductInputAction>;
   children: ReactNode;
 }
 
-function TagInput({ children, name, tags, placeholder, dispatch }: Props) {
+function TagInput({
+  children,
+  name,
+  tags,
+  placeholder,
+  dispatch,
+}: PropsWithChildren<TagInputProps>) {
   const [value, setValue] = useState(""); // input state
 
   /**

@@ -1,10 +1,10 @@
 import { ChangeEvent } from "react";
 
-interface Props {
+interface SearchProps {
   setKeyword: (value: string) => void;
 }
 
-function Search({ setKeyword }: Props) {
+function Search({ setKeyword }: SearchProps) {
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) =>
     setKeyword(target.value);
   return (
