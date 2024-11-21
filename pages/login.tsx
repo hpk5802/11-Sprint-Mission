@@ -5,7 +5,7 @@ import useInputReducer from "@/reducers/useInputReducer";
 import { AuthFormState } from "@/types/authForm";
 import Image from "next/image";
 import Link from "next/link";
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 
 const INITIAL_FORM_STATE: AuthFormState = {
   email: {
@@ -18,12 +18,13 @@ const INITIAL_FORM_STATE: AuthFormState = {
     isValid: false,
     errorMessage: "",
   },
+  isFormValid: false,
 };
 
 function Login() {
-  const [isFormValid, setIsFormValid] = useState(false);
   const [state, dispatch] = useReducer(useInputReducer, INITIAL_FORM_STATE);
-  const { email, password } = state;
+  const { email, password, isFormValid } = state;
+
   return (
     <div className='container'>
       <h1 className='logo'>

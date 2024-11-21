@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { PropsWithChildren, ReactNode } from "react";
+import { FormEvent, PropsWithChildren, ReactNode } from "react";
 
 type FormType = "login" | "signup";
 
@@ -10,13 +10,17 @@ interface FormInterface {
   children: ReactNode;
 }
 
+const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+};
+
 function Form({
   children,
   formType,
   isValid = false,
 }: PropsWithChildren<FormInterface>) {
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       {children}
       <button type='submit' className='btn login' disabled={!isValid}>
         로그인
