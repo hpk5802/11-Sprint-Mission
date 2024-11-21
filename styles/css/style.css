@@ -692,6 +692,7 @@ footer .footer-wrap .sns a img {
   width: 100%;
 }
 .product .img-wrap {
+  position: relative;
   aspect-ratio: 1/1;
   border-radius: 1.6rem;
   overflow: hidden;
@@ -720,7 +721,8 @@ footer .footer-wrap .sns a img {
   align-items: center;
   margin-top: 0.6rem;
 }
-.product .desc-wrap .product-favorite img {
+.product .desc-wrap .product-favorite div {
+  position: relative;
   display: block;
   width: 1.6rem;
   height: 1.6rem;
@@ -737,6 +739,7 @@ footer .footer-wrap .sns a img {
   position: relative;
   width: 13rem;
   height: 4.2rem;
+  z-index: 1;
 }
 .sort-area .btn-sort {
   position: absolute;
@@ -760,7 +763,7 @@ footer .footer-wrap .sns a img {
   right: 2rem;
   width: 2.4rem;
   height: 2.4rem;
-  background: url(/public/images/icons/ic_arrow_down.svg) no-repeat center/cover;
+  background: url(/icons/ic_arrow_down.svg) no-repeat center/cover;
   transform: translateY(-50%);
   z-index: 1;
 }
@@ -793,7 +796,7 @@ footer .footer-wrap .sns a img {
   }
   .sort-area .btn-sort::before {
     left: 50%;
-    background-image: url(/public/images/icons/ic_sort.svg);
+    background-image: url(/icons/ic_sort.svg);
     transform: translate(-50%, -50%);
   }
   .sort-area .btn-sort .mo-hidden {
@@ -812,6 +815,9 @@ footer .footer-wrap .sns a img {
   font-size: 1.6rem;
   font-weight: var(--semiBold);
   line-height: 2.6rem;
+  color: var(--gray100);
+}
+.btn-primary a {
   color: var(--gray100);
 }
 .btn-primary:disabled {
@@ -847,11 +853,11 @@ footer .footer-wrap .sns a img {
   opacity: 0.5;
 }
 .pagination .btn-pagination.btn-prev, .pagination .btn-pagination.btn-next {
-  background: url(/public/images/icons/ic_arrow_right.svg) no-repeat center/1.6rem 1.6rem;
+  background: url(/icons/ic_arrow_right.svg) no-repeat center/1.6rem 1.6rem;
 }
 .pagination .btn-pagination.btn-prev:disabled, .pagination .btn-pagination.btn-next:disabled {
   cursor: not-allowed;
-  background-image: url(/public/images/icons/ic_arrow_right_disable.svg);
+  background-image: url(/icons/ic_arrow_right_disable.svg);
 }
 .pagination .btn-pagination.btn-next {
   transform: rotate(180deg);
@@ -993,6 +999,7 @@ footer .footer-wrap .sns a img {
   border-bottom: 0.1rem solid var(--gray200);
 }
 .page-detail .product-detail-contents .img-wrap {
+  position: relative;
   width: 48.6rem;
   height: 48.6rem;
   border-radius: 1.6rem;
@@ -1067,12 +1074,9 @@ footer .footer-wrap .sns a img {
   gap: 0 1.6rem;
 }
 .page-detail .product-detail-contents .desc-wrap .detail-footer .owner-wrap .owner-icon {
+  position: relative;
   width: 4rem;
   height: 4rem;
-}
-.page-detail .product-detail-contents .desc-wrap .detail-footer .owner-wrap .owner-icon img {
-  width: 100%;
-  height: 100%;
 }
 .page-detail .product-detail-contents .desc-wrap .detail-footer .owner-wrap .owner-desc .owner-name {
   margin-bottom: 0.2rem;
@@ -1105,7 +1109,8 @@ footer .footer-wrap .sns a img {
   height: 100%;
   background-color: var(--gray200);
 }
-.page-detail .product-detail-contents .desc-wrap .detail-footer .btn-favorite img {
+.page-detail .product-detail-contents .desc-wrap .detail-footer .btn-favorite div {
+  position: relative;
   width: 3.2rem;
   height: 3.2rem;
 }
@@ -1169,6 +1174,11 @@ footer .footer-wrap .sns a img {
 }
 .page-detail .navigate-to-items:hover {
   outline: 0.1rem solid #000;
+}
+.page-detail .navigate-to-items span {
+  position: relative;
+  width: 2.4rem;
+  height: 2.4rem;
 }
 
 @media (max-width: 1199px) {
@@ -1283,12 +1293,9 @@ footer .footer-wrap .sns a img {
   gap: 0.8rem;
 }
 .content-inquiry .inquiry-footer .user-area .writer-icon {
+  position: relative;
   width: 3.2rem;
   height: 3.2rem;
-}
-.content-inquiry .inquiry-footer .user-area .writer-icon img {
-  width: 100%;
-  height: 100%;
 }
 .content-inquiry .inquiry-footer .user-area .writer-name {
   margin-bottom: 0.4rem;
@@ -1327,7 +1334,8 @@ footer .footer-wrap .sns a img {
   gap: 0.4rem;
   margin: 2.4rem 0 4.8rem;
 }
-.inquiry-empty img {
+.inquiry-empty div {
+  position: relative;
   width: 19.6rem;
   height: 19.6rem;
 }
@@ -1348,6 +1356,7 @@ footer .footer-wrap .sns a img {
   }
 }
 .btn-open-menu {
+  position: relative;
   width: 2.4rem;
   height: 2.4rem;
   padding: 0;
@@ -1834,7 +1843,7 @@ footer .footer-wrap .sns a img {
   width: 32.5rem;
   height: 4.2rem;
 }
-.page-items section#section_all .top .filter-area .input-area img {
+.page-items section#section_all .top .filter-area .input-area div {
   position: absolute;
   top: 0.9rem;
   left: 1.6rem;

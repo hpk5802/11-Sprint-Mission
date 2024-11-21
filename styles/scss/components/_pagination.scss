@@ -24,11 +24,11 @@
     }
     &.btn-prev,
     &.btn-next {
-      background: url(/public/images/icons/ic_arrow_right.svg) no-repeat center /
-        1.6rem 1.6rem;
+      background: url(/icons/ic_arrow_right.svg) no-repeat center / 1.6rem
+        1.6rem;
       &:disabled {
         cursor: not-allowed;
-        background-image: url(/public/images/icons/ic_arrow_right_disable.svg);
+        background-image: url(/icons/ic_arrow_right_disable.svg);
       }
     }
     &.btn-next {

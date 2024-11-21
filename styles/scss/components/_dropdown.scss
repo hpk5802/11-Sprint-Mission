@@ -2,6 +2,7 @@
   position: relative;
   width: 13rem;
   height: 4.2rem;
+  z-index: 1;
   .btn-sort {
     position: absolute;
     top: 0;
@@ -23,8 +24,7 @@
       right: 2rem;
       width: 2.4rem;
       height: 2.4rem;
-      background: url(/public/images/icons/ic_arrow_down.svg) no-repeat center /
-        cover;
+      background: url(/icons/ic_arrow_down.svg) no-repeat center / cover;
       transform: translateY(-50%);
       z-index: 1;
     }
@@ -59,7 +59,7 @@
     .btn-sort {
       &::before {
         left: 50%;
-        background-image: url(/public/images/icons/ic_sort.svg);
+        background-image: url(/icons/ic_sort.svg);
         transform: translate(-50%, -50%);
       }
       .mo-hidden {

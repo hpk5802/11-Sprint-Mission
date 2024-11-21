@@ -7,6 +7,9 @@
   font-weight: var(--semiBold);
   line-height: 2.6rem;
   color: var(--gray100);
+  a {
+    color: var(--gray100);
+  }
   &:disabled {
     cursor: not-allowed;
     background-color: var(--gray400);

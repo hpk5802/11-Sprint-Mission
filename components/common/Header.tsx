@@ -27,12 +27,12 @@ function Header({ isLogin = false }: HeaderProps) {
             <Link
               href='/items'
               title='중고 마켓 페이지 이동'
-              className={
-                location.pathname.startsWith("/items") ||
-                location.pathname.startsWith("/addItem")
-                  ? "active"
-                  : ""
-              }
+              // className={
+              //   location.pathname.startsWith("/items") ||
+              //   location.pathname.startsWith("/addItem")
+              //     ? "active"
+              //     : ""
+              // }
             >
               중고마켓
             </Link>
