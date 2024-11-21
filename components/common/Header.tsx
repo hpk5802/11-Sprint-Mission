@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface HeaderProps {
   isLogin?: boolean;
 }
 
 function Header({ isLogin = false }: HeaderProps) {
+  const router = useRouter();
+  const { pathname } = router;
   return (
     <header>
       <h1 className='logo'>
@@ -27,12 +30,11 @@ function Header({ isLogin = false }: HeaderProps) {
             <Link
               href='/items'
               title='중고 마켓 페이지 이동'
-              // className={
-              //   location.pathname.startsWith("/items") ||
-              //   location.pathname.startsWith("/addItem")
-              //     ? "active"
-              //     : ""
-              // }
+              className={
+                pathname.startsWith("/items") || pathname.startsWith("/addItem")
+                  ? "active"
+                  : ""
+              }
             >
               중고마켓
             </Link>
