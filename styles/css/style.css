@@ -1638,13 +1638,12 @@ footer .footer-wrap .sns a img {
   padding: 6rem 0;
 }
 .container .logo {
+  position: relative;
   width: 39.6rem;
   height: 13.2rem;
 }
 .container .logo img {
   display: block;
-  width: 100%;
-  height: 100%;
 }
 .container form {
   display: flex;
@@ -1683,15 +1682,15 @@ footer .footer-wrap .sns a img {
   outline-color: var(--primary100);
 }
 .container form .input-area input.pw[type=text] ~ .btn-toggle {
-  background-image: url(/public/images/icons/ic_visibility_on.png);
+  background-image: url(/icons/ic_visibility_on.png);
 }
 .container form .input-area input.pw[type=password] ~ .btn-toggle {
-  background-image: url(/public/images/icons/ic_visibility_off.png);
+  background-image: url(/icons/ic_visibility_off.png);
 }
-.container form .input-area input.invalid {
+.container form .input-area input[data-valid=false] {
   border: 0.1rem solid var(--error);
 }
-.container form .input-area input.invalid ~ .msg-error {
+.container form .input-area input[data-valid=false] ~ .msg-error {
   display: block;
 }
 .container form .input-area .btn-toggle {
@@ -1752,6 +1751,7 @@ footer .footer-wrap .sns a img {
   gap: 0 1.6rem;
 }
 .container form .sns-area .sns-wrap .btn-sns {
+  position: relative;
   display: block;
   width: 4.2rem;
   height: 4.2rem;

@@ -9,12 +9,11 @@
   min-height: 100vh;
   padding: 6rem 0;
   .logo {
+    position: relative;
     width: 39.6rem;
     height: 13.2rem;
     img {
       display: block;
-      width: 100%;
-      height: 100%;
     }
   }
   form {
@@ -50,16 +49,16 @@
         &.pw {
           &[type="text"] {
             & ~ .btn-toggle {
-              background-image: url(/public/images/icons/ic_visibility_on.png);
+              background-image: url(/icons/ic_visibility_on.png);
             }
           }
           &[type="password"] {
             & ~ .btn-toggle {
-              background-image: url(/public/images/icons/ic_visibility_off.png);
+              background-image: url(/icons/ic_visibility_off.png);
             }
           }
         }
-        &.invalid {
+        &[data-valid="false"] {
           border: 0.1rem solid var(--error);
           & ~ .msg-error {
             display: block;
@@ -123,6 +122,7 @@
         display: flex;
         gap: 0 1.6rem;
         .btn-sns {
+          position: relative;
           display: block;
           width: 4.2rem;
           height: 4.2rem;
