@@ -55,6 +55,7 @@ function Signup() {
         {passwordConfirm && (
           <PassWordInputConfirm
             state={passwordConfirm}
+            password={password.value}
             handleValue={dispatch}
           />
         )}

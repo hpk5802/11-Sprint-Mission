@@ -5,10 +5,15 @@ import { ChangeEvent, Dispatch, FocusEvent } from "react";
 
 interface PasswordInputInterface {
   state: AuthInputState;
+  password: string;
   handleValue: Dispatch<AuthFormAction>;
 }
 
-function PassWordInputConfirm({ state, handleValue }: PasswordInputInterface) {
+function PassWordInputConfirm({
+  state,
+  password,
+  handleValue,
+}: PasswordInputInterface) {
   const { value, isValid, errorMessage } = state;
   const { inputType, toggleVisibility } = usePasswordVisibility();
 
@@ -22,7 +27,8 @@ function PassWordInputConfirm({ state, handleValue }: PasswordInputInterface) {
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     const { isValid, errorMessage } = validateField(
       "passwordConfirm",
-      e.target.value
+      e.target.value,
+      { password: password, confirmPassword: e.target.value }
     );
     handleValue({
       type: "SET_VALIDITY",

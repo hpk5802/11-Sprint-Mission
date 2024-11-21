@@ -51,7 +51,7 @@ function validateField(
             errorMessage: "비밀번호를 8자리 이상 입력해 주세요.",
           };
     },
-    confirmPassword: (val) => {
+    passwordConfirm: (val) => {
       if (!formState)
         return {
           isValid: false,
