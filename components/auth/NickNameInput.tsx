@@ -1,6 +1,7 @@
 import validateField from "@/hooks/validateFied";
 import { AuthFormAction, AuthInputState } from "@/types/authForm";
 import { ChangeEvent, Dispatch, FocusEvent } from "react";
+import useInputHandler from "../../hooks/useInputHandler";
 
 interface PasswordInputInterface {
   state: AuthInputState;
@@ -9,21 +10,11 @@ interface PasswordInputInterface {
 
 function NickNameInput({ state, handleValue }: PasswordInputInterface) {
   const { value, isValid, errorMessage, hasFocused } = state;
+  const { handleChange, handleBlur } = useInputHandler({
+    field: "nickname",
+    handleValue,
+  });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    handleValue({
-      type: "SET_VALUE",
-      payload: { filed: "nickname", value: e.target.value },
-    });
-  };
-
-  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-    const { isValid, errorMessage } = validateField("nickname", e.target.value);
-    handleValue({
-      type: "SET_VALIDITY",
-      payload: { field: "nickname", isValid, errorMessage },
-    });
-  };
   return (
     <div className='input-area nickname'>
       <label htmlFor='input_name'>닉네임</label>

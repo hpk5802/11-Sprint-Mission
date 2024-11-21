@@ -89,6 +89,11 @@ function validateField(
           isValid: false,
           errorMessage: "비밀번호를 확인할 수 없습니다.",
         };
+      if (val.length < 8)
+        return {
+          isValid: false,
+          errorMessage: "비밀번호를 8자리 이상 입력해 주세요.",
+        };
       return val === formState.password
         ? { isValid: true, errorMessage: "" }
         : { isValid: false, errorMessage: "비밀번호가 일치하지 않습니다." };

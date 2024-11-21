@@ -1,6 +1,7 @@
 import validateField from "@/hooks/validateFied";
 import { AuthFormAction, AuthInputState } from "@/types/authForm";
 import { ChangeEvent, Dispatch, FocusEvent } from "react";
+import useInputHandler from "../../hooks/useInputHandler";
 
 interface EmailInputInterface {
   state: AuthInputState;
@@ -9,21 +10,10 @@ interface EmailInputInterface {
 
 function EmailInput({ state, handleValue }: EmailInputInterface) {
   const { value, isValid, errorMessage, hasFocused } = state;
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    handleValue({
-      type: "SET_VALUE",
-      payload: { filed: "email", value: e.target.value },
-    });
-  };
-
-  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-    const { isValid, errorMessage } = validateField("email", e.target.value);
-    handleValue({
-      type: "SET_VALIDITY",
-      payload: { field: "email", isValid, errorMessage },
-    });
-  };
-
+  const { handleChange, handleBlur } = useInputHandler({
+    field: "email",
+    handleValue,
+  });
   return (
     <div className='input-area email'>
       <label htmlFor='input_email'>이메일</label>

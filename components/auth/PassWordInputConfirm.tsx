@@ -2,6 +2,7 @@ import usePasswordVisibility from "@/hooks/usePassWordVisivility";
 import validateField from "@/hooks/validateFied";
 import { AuthFormAction, AuthInputState } from "@/types/authForm";
 import { ChangeEvent, Dispatch, FocusEvent } from "react";
+import useInputHandler from "../../hooks/useInputHandler";
 
 interface PasswordInputInterface {
   state: AuthInputState;
@@ -15,26 +16,13 @@ function PassWordInputConfirm({
   handleValue,
 }: PasswordInputInterface) {
   const { value, isValid, errorMessage, hasFocused } = state;
+  const { handleChange, handleBlur } = useInputHandler({
+    field: "passwordConfirm",
+    handleValue,
+    data: { password },
+  });
   const { inputType, toggleVisibility } = usePasswordVisibility();
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    handleValue({
-      type: "SET_VALUE",
-      payload: { filed: "passwordConfirm", value: e.target.value },
-    });
-  };
-
-  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-    const { isValid, errorMessage } = validateField(
-      "passwordConfirm",
-      e.target.value,
-      { password: password, confirmPassword: e.target.value }
-    );
-    handleValue({
-      type: "SET_VALIDITY",
-      payload: { field: "passwordConfirm", isValid, errorMessage },
-    });
-  };
   return (
     <div className='input-area password'>
       <label htmlFor='input_password_confirm'>비밀번호 확인</label>
