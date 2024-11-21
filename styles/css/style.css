@@ -570,6 +570,7 @@ header .login-area .content-link a.active {
   color: var(--primary100);
 }
 header .login-area .link-profile {
+  position: relative;
   width: 4rem;
   height: 4rem;
 }
