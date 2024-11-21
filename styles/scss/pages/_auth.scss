@@ -58,7 +58,7 @@
             }
           }
         }
-        &[data-valid="false"] {
+        &:not(.not-focused)[data-valid="false"] {
           border: 0.1rem solid var(--error);
           & ~ .msg-error {
             display: block;

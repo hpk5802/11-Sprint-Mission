@@ -2,6 +2,7 @@ interface AuthInputState {
   value: string;
   isValid: boolean;
   errorMessage: string;
+  hasFocused: boolean;
 }
 
 interface AuthFormState {

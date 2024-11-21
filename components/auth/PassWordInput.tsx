@@ -9,7 +9,7 @@ interface PasswordInputInterface {
 }
 
 function PassWordInput({ state, handleValue }: PasswordInputInterface) {
-  const { value, isValid, errorMessage } = state;
+  const { value, isValid, errorMessage, hasFocused } = state;
   const { inputType, toggleVisibility } = usePasswordVisibility();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +32,7 @@ function PassWordInput({ state, handleValue }: PasswordInputInterface) {
       <input
         type={inputType}
         id='input_password'
-        className='pw'
+        className={["pw", hasFocused ? "" : "not-focused"].join(" ")}
         value={value}
         placeholder='비밀번호를 입력해주세요'
         onChange={handleChange}

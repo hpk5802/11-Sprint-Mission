@@ -14,21 +14,25 @@ const INITIAL_FORM_STATE: AuthFormState = {
     value: "",
     isValid: false,
     errorMessage: "",
+    hasFocused: false,
   },
   nickname: {
     value: "",
     isValid: false,
     errorMessage: "",
+    hasFocused: false,
   },
   password: {
     value: "",
     isValid: false,
     errorMessage: "",
+    hasFocused: false,
   },
   passwordConfirm: {
     value: "",
     isValid: false,
     errorMessage: "",
+    hasFocused: false,
   },
   isFormValid: false,
 };

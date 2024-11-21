@@ -8,7 +8,7 @@ interface EmailInputInterface {
 }
 
 function EmailInput({ state, handleValue }: EmailInputInterface) {
-  const { value, isValid, errorMessage } = state;
+  const { value, isValid, errorMessage, hasFocused } = state;
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     handleValue({
       type: "SET_VALUE",
@@ -30,6 +30,7 @@ function EmailInput({ state, handleValue }: EmailInputInterface) {
       <input
         type='email'
         id='input_email'
+        className={hasFocused ? "" : "not-focused"}
         placeholder='이메일을 입력해 주세요'
         value={value}
         onChange={handleChange}

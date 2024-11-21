@@ -1687,10 +1687,10 @@ footer .footer-wrap .sns a img {
 .container form .input-area input.pw[type=password] ~ .btn-toggle {
   background-image: url(/icons/ic_visibility_off.png);
 }
-.container form .input-area input[data-valid=false] {
+.container form .input-area input:not(.not-focused)[data-valid=false] {
   border: 0.1rem solid var(--error);
 }
-.container form .input-area input[data-valid=false] ~ .msg-error {
+.container form .input-area input:not(.not-focused)[data-valid=false] ~ .msg-error {
   display: block;
 }
 .container form .input-area .btn-toggle {

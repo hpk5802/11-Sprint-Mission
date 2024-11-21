@@ -14,7 +14,7 @@ function PassWordInputConfirm({
   password,
   handleValue,
 }: PasswordInputInterface) {
-  const { value, isValid, errorMessage } = state;
+  const { value, isValid, errorMessage, hasFocused } = state;
   const { inputType, toggleVisibility } = usePasswordVisibility();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +41,7 @@ function PassWordInputConfirm({
       <input
         type={inputType}
         id='input_password_confirm'
-        className='pw'
+        className={["pw", hasFocused ? "" : "not-focused"].join(" ")}
         placeholder='비밀번호를 다시 한 번 입력해주세요'
         value={value}
         onChange={handleChange}

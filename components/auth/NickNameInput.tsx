@@ -8,7 +8,7 @@ interface PasswordInputInterface {
 }
 
 function NickNameInput({ state, handleValue }: PasswordInputInterface) {
-  const { value, isValid, errorMessage } = state;
+  const { value, isValid, errorMessage, hasFocused } = state;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     handleValue({
@@ -30,6 +30,7 @@ function NickNameInput({ state, handleValue }: PasswordInputInterface) {
       <input
         type='text'
         id='input_name'
+        className={hasFocused ? "" : "not-focused"}
         placeholder='닉네임을 입력해 주세요'
         value={value}
         data-valid={isValid}

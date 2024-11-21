@@ -26,6 +26,7 @@ const useInputReducer = (
           ...state[action.payload.field],
           isValid: action.payload.isValid,
           errorMessage: action.payload.errorMessage,
+          hasFocused: true,
         },
       };
       // 업데이트 된 state의 모든 필드의 isValid를 확인 후 true면 isFormValid를 true로 갱신
