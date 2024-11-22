@@ -2020,6 +2020,12 @@ footer .footer-wrap .sns a img {
 .page-items section#section_all .top .filter-area .input-area input:focus {
   outline: 0.1rem solid var(--primary100);
 }
+.page-items section#section_all .no-result {
+  margin-top: 2.4rem;
+  font-size: 2.8rem;
+  font-weight: var(--bold);
+  text-align: center;
+}
 .page-items section .products-wrap {
   display: grid;
   gap: 4rem 2.4rem;

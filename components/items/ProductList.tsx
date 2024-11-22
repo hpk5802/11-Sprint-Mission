@@ -80,18 +80,24 @@ function ProductList() {
           <DropDown order={sortOptions} setOrder={setOrder} />
         </div>
       </div>
-      <ul className='products-wrap all'>
-        {products.list.map((product) => (
-          <li key={product.id} className='product-item'>
-            <Product product={product} />
-          </li>
-        ))}
-      </ul>
-      <Paginations
-        totalPage={products.totalProductsCount}
-        currentPage={currentPage}
-        handlePageChange={handlePageChange}
-      />
+      {products.list.length > 0 ? (
+        <>
+          <ul className='products-wrap all'>
+            {products.list.map((product) => (
+              <li key={product.id} className='product-item'>
+                <Product product={product} />
+              </li>
+            ))}
+          </ul>
+          <Paginations
+            totalPage={products.totalProductsCount}
+            currentPage={currentPage}
+            handlePageChange={handlePageChange}
+          />
+        </>
+      ) : (
+        <div className='no-result'>검색 내용이 없습니다...</div>
+      )}
     </section>
   );
 }
