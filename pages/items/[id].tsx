@@ -118,7 +118,7 @@ function Detail() {
         loadInquiryById(productId, nextCursor);
       }
     },
-    [id, nextCursor, loadInquiryById]
+    [productId, nextCursor, loadInquiryById]
   );
 
   useEffect(() => {

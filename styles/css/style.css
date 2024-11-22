@@ -2160,7 +2160,7 @@ footer .footer-wrap .sns a img {
 }
 .page-boards section .btn-register {
   position: absolute;
-  top: 0;
+  top: -0.5rem;
   right: 0;
 }
 .page-boards section .filter-area {
@@ -2204,6 +2204,12 @@ footer .footer-wrap .sns a img {
 }
 .page-boards section .filter-area .sort-area {
   flex-shrink: 0;
+}
+.page-boards section .no-result {
+  margin-top: 2.4rem;
+  font-size: 2.8rem;
+  font-weight: var(--bold);
+  text-align: center;
 }
 
 @media (max-width: 1199px) {

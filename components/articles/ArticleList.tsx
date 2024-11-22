@@ -34,7 +34,7 @@ function ArticleList() {
     (page = currentPage.toString(), pageSize = productsPerPage.toString()) => {
       fetchArticles({
         page,
-        pageSize: "10",
+        pageSize: pageSize,
         orderBy: order,
         keyword: keyword,
       }).then(({ list, totalCount }) => {
@@ -62,13 +62,17 @@ function ArticleList() {
         <Search setKeyword={setKeyword} />
         <DropDown order={sortOptions} setOrder={setOrder} />
       </div>
-      <ul className='article-wrap'>
-        {articles.list.map((article) => (
-          <li key={article.id}>
-            <Article article={article} />
-          </li>
-        ))}
-      </ul>
+      {articles.list.length > 0 ? (
+        <ul className='article-wrap'>
+          {articles.list.map((article) => (
+            <li key={article.id}>
+              <Article article={article} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className='no-result'>검색 내용이 없습니다...</div>
+      )}
     </section>
   );
 }
