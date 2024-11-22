@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 interface DropDownProps {
+  order: sort[];
   setOrder: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -9,18 +10,7 @@ type sort = {
   value: string;
 };
 
-const sortOptions: sort[] = [
-  {
-    text: "최신순",
-    value: "recent",
-  },
-  {
-    text: "좋아요순",
-    value: "favorite",
-  },
-];
-
-function DropDown({ setOrder }: DropDownProps) {
+function DropDown({ order, setOrder }: DropDownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItemText, setSelectedItemText] = useState("최신순");
 
@@ -44,7 +34,7 @@ function DropDown({ setOrder }: DropDownProps) {
       </button>
       {isOpen && (
         <div className='options'>
-          {sortOptions.map((option) => (
+          {order.map((option) => (
             <button
               key={option.value}
               type='button'
