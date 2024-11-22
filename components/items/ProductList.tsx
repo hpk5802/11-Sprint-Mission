@@ -9,6 +9,17 @@ import Link from "next/link";
 import useWindowSize from "@/hooks/useWindowSize";
 import { ProductInterface } from "@/types/product";
 
+const sortOptions = [
+  {
+    text: "최신순",
+    value: "recent",
+  },
+  {
+    text: "좋아요순",
+    value: "favorite",
+  },
+];
+
 function ProductList() {
   const showPerPage = useWindowSize();
   const [products, setProducts] = useState<{
@@ -66,7 +77,7 @@ function ProductList() {
           <PrimaryButton name='btn-register'>
             <Link href='/addItem'>상품 등록하기</Link>
           </PrimaryButton>
-          <DropDown setOrder={setOrder} />
+          <DropDown order={sortOptions} setOrder={setOrder} />
         </div>
       </div>
       <ul className='products-wrap all'>

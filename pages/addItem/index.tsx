@@ -1,4 +1,7 @@
-import { INITIAL_INPUT, ProductInputReducer } from "@/reducers/productReducer";
+import {
+  INITIAL_INPUT,
+  ProductInputReducer,
+} from "@/reducers/useProductReducer";
 import { FormEvent, useEffect, useReducer, useState } from "react";
 import { postProduct } from "@/pages/api/productApi";
 import Header from "@/components/common/Header";

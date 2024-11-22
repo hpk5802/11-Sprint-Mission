@@ -48,7 +48,7 @@ function Header({ isLogin = false }: HeaderProps) {
             className='link-profile'
             title='프로필 페이지 이동'
           >
-            <Image fill src='/icons/ic_user_login.svg' alt='프로필 이미지' />
+            <Image fill src='/icons/ic_user.svg' alt='프로필 이미지' />
           </Link>
         </div>
       ) : (

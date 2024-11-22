@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface ImageProps {
   images: string[];
   name: string;
 }
 
-function ImageComponent({ images, name }: ImageProps) {
+function ImageProduct({ images, name }: ImageProps) {
   const [imageRenderError, setImageRenderError] = useState(false);
   const image = images?.[0] || "/icons/ic_no_image.svg"; // 등록된 이미지가 없는 경우 대체 이미지(ic_no_image) 노출
 
@@ -23,4 +23,4 @@ function ImageComponent({ images, name }: ImageProps) {
   );
 }
 
-export default ImageComponent;
+export default ImageProduct;
