@@ -24,7 +24,11 @@ function Header({ isLogin = false }: HeaderProps) {
       {isLogin ? (
         <div className='login-area'>
           <div className='content-link'>
-            <Link href='/board' title='자유 게시판 페이지 이동'>
+            <Link
+              href='/boards'
+              title='자유 게시판 페이지 이동'
+              className={pathname.startsWith("/boards") ? "active" : ""}
+            >
               자유게시판
             </Link>
             <Link
