@@ -1,7 +1,7 @@
 import { formatPriceToKRW } from "@/utils/formatPrice";
-import ImageComponent from "../common/ImageComponent";
 import { formatDate } from "@/utils/formatDate";
 import Image from "next/image";
+import ImageProduct from "../items/ImageProduct";
 
 interface DetailProductProps {
   name: string;
@@ -28,7 +28,7 @@ function DetailProduct({
 }: DetailProductProps) {
   return (
     <div className='product-detail-contents'>
-      <ImageComponent images={images} name={name} />
+      <ImageProduct images={images} name={name} />
       <div className='desc-wrap'>
         <h2 className='detail-name'>{name}</h2>
         <div className='detail-price'>{formatPriceToKRW(price)}</div>
@@ -49,7 +49,7 @@ function DetailProduct({
         <div className='detail-footer'>
           <div className='owner-wrap'>
             <div className='owner-icon'>
-              <Image fill src='/icons/ic_user_login.svg' alt={ownerNickname} />
+              <Image fill src='/icons/ic_user.svg' alt={ownerNickname} />
             </div>
             <div className='owner-desc'>
               <div className='owner-name'>{ownerNickname}</div>

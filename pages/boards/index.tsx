@@ -1,3 +1,4 @@
+import ArticleList from "@/components/articles/ArticleList";
 import BestArticleList from "@/components/articles/BestArticleList";
 import Header from "@/components/common/Header";
 
@@ -7,6 +8,7 @@ function index() {
       <Header isLogin={true} />
       <main className='page-boards'>
         <BestArticleList />
+        <ArticleList />
       </main>
     </>
   );

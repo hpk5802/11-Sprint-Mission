@@ -1,15 +1,13 @@
 import { fetchArticles } from "@/pages/api/articleApi";
 import { ArticleInterface } from "@/types/article";
 import { useEffect, useState } from "react";
-import BestArticle from "./BestArticle";
+import Article from "./Article";
 
 function BestArticleList() {
   const [articles, setArticles] = useState<ArticleInterface[]>([]);
 
   useEffect(() => {
-    fetchArticles({ page: "8", pageSize: "3" }).then(({ list }) =>
-      setArticles(list)
-    );
+    fetchArticles({ pageSize: "3" }).then(({ list }) => setArticles(list));
   }, []);
 
   return (
@@ -18,7 +16,7 @@ function BestArticleList() {
       <ul className='article-wrap best'>
         {articles.map((article) => (
           <li key={article.id}>
-            <BestArticle isBest article={article} />
+            <Article isBest article={article} />
           </li>
         ))}
       </ul>

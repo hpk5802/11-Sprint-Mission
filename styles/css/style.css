@@ -1391,18 +1391,17 @@ footer .footer-wrap .sns a img {
   color: var(--gray500);
 }
 
-.best-article {
+.article {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  width: 38.4rem;
-  height: 16.9rem;
-  padding: 4.6rem 2.4rem 0.9rem;
-  border-radius: 0.8rem;
-  background-color: var(--gray50);
+  margin-top: 2.4rem;
+  padding-bottom: 2.4rem;
+  background-color: #fcfcfc;
+  border-bottom: 0.1rem solid var(--gray200);
 }
-.best-article .medal-wrap {
+.article .medal-wrap {
   position: absolute;
   top: 0;
   left: 2.4rem;
@@ -1418,20 +1417,20 @@ footer .footer-wrap .sns a img {
   line-height: 2.6rem;
   color: #fff;
 }
-.best-article .medal-wrap span {
+.article .medal-wrap span {
   position: relative;
   display: inline-block;
   width: 1.6rem;
   height: 1.6rem;
   margin-right: 0.4rem;
 }
-.best-article .content-wrap {
+.article .content-wrap {
   display: flex;
   justify-content: space-between;
   gap: 0.8rem;
   margin-bottom: 1.8rem;
 }
-.best-article .content-wrap .title {
+.article .content-wrap .title {
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1444,69 +1443,97 @@ footer .footer-wrap .sns a img {
   line-height: 3.2rem;
   color: var(--gray800);
 }
-.best-article .content-wrap .img-wrap {
+.article .content-wrap .img-wrap {
   flex-shrink: 0;
   position: relative;
   width: 7.2rem;
   height: 7.2rem;
+  border: 0.1rem solid var(--gray200);
+  border-radius: 0.6rem;
+  background-color: #fff;
+  overflow: hidden;
 }
-.best-article .desc-wrap {
+.article .desc-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.best-article .desc-wrap .user-wrap {
+.article .desc-wrap .user-wrap {
   display: flex;
   align-items: center;
   gap: 0.8rem;
   font-size: 1.4rem;
   line-height: 2.4rem;
 }
-.best-article .desc-wrap .user-wrap .nickname {
+.article .desc-wrap .user-profile {
+  position: relative;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+.article .desc-wrap .nickname {
   color: var(--gray600);
 }
-.best-article .desc-wrap .user-wrap .like-count {
+.article .desc-wrap .like-count {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
   color: var(--gray500);
 }
-.best-article .desc-wrap .user-wrap .like-count span {
+.article .desc-wrap .like-count span {
   position: relative;
   display: inline-block;
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 2.4rem;
+  height: 2.4rem;
 }
-.best-article .desc-wrap .date {
+.article .desc-wrap .date {
   font-size: 1.4rem;
   line-height: 2.4rem;
   color: var(--gray400);
 }
+.article.best {
+  width: 38.4rem;
+  height: 16.9rem;
+  margin-top: 0;
+  padding: 4.6rem 2.4rem 0.9rem;
+  border-radius: 0.8rem;
+  border-bottom: 0;
+  background-color: var(--gray50);
+}
+.article.best .desc-wrap .like-count {
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+}
+.article.best .desc-wrap .like-count span {
+  width: 1.6rem;
+  height: 1.6rem;
+}
 
 @media (max-width: 1199px) {
-  .best-article {
+  .article.best {
     width: 34rem;
     height: 19.8rem;
     padding-bottom: 1.6rem;
   }
-  .best-article .content-wrap {
+  .article .content-wrap {
     gap: 4rem;
   }
-  .best-article .content-wrap .title {
+  .article .content-wrap .title {
     font-size: 1.8rem;
     line-height: 2.6rem;
   }
 }
 @media (max-width: 767px) {
-  .best-article {
+  .article.best {
     width: 34.3rem;
     height: 19.8rem;
     padding-bottom: 1.6rem;
   }
-  .best-article .content-wrap {
+  .article .content-wrap {
     gap: 4rem;
   }
-  .best-article .content-wrap .title {
+  .article .content-wrap .title {
     font-size: 1.8rem;
     line-height: 2.6rem;
   }
@@ -2109,8 +2136,12 @@ footer .footer-wrap .sns a img {
   margin-top: 2.4rem;
 }
 .page-boards section {
+  position: relative;
   max-width: 120rem;
   margin: 0 auto;
+}
+.page-boards section + section {
+  margin-top: 4rem;
 }
 .page-boards section .article-title {
   margin-bottom: 2.4rem;
@@ -2119,9 +2150,60 @@ footer .footer-wrap .sns a img {
   line-height: 2.4rem;
   color: var(--gray900);
 }
-.page-boards section .article-wrap.best {
+.page-boards section .article-wrap {
   display: flex;
+  flex-direction: column;
   gap: 2.4rem;
+}
+.page-boards section .article-wrap.best {
+  flex-direction: row;
+}
+.page-boards section .btn-register {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.page-boards section .filter-area {
+  display: flex;
+  align-items: center;
+  gap: 0 1.6rem;
+}
+.page-boards section .filter-area .input-area {
+  position: relative;
+  width: 100%;
+  height: 4.2rem;
+}
+.page-boards section .filter-area .input-area div {
+  position: absolute;
+  top: 0.9rem;
+  left: 1.6rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  z-index: 1;
+}
+.page-boards section .filter-area .input-area input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0.9rem 2.4rem 0.9rem 4.4rem;
+  border: 0;
+  border-radius: 1.2rem;
+  background-color: var(--gray100);
+  font-size: 1.6rem;
+}
+.page-boards section .filter-area .input-area input::-moz-placeholder {
+  color: var(--gray400);
+}
+.page-boards section .filter-area .input-area input::placeholder {
+  color: var(--gray400);
+}
+.page-boards section .filter-area .input-area input:focus {
+  outline: 0.1rem solid var(--primary100);
+}
+.page-boards section .filter-area .sort-area {
+  flex-shrink: 0;
 }
 
 @media (max-width: 1199px) {

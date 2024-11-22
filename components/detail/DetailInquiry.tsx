@@ -56,7 +56,7 @@ function DetailInquiry({ id, content, writer, updatedAt }: DetailInquiryProps) {
       <div className='inquiry-footer'>
         <div className='user-area'>
           <div className='writer-icon'>
-            <Image fill src='/icons/ic_user_login.svg' alt={writer.nickname} />
+            <Image fill src='/icons/ic_user.svg' alt={writer.nickname} />
           </div>
           <div>
             <div className='writer-name'>{writer.nickname}</div>
