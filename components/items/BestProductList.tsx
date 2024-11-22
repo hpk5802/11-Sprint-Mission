@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Product from "./Product";
-import { ProductInterface } from "./ProductList";
-import { fetchProducts } from "@/pages/api/api";
+import { fetchProducts } from "@/pages/api/productApi";
+import { ProductInterface } from "@/types/product";
 
 function BestProductList() {
   const [bestProducts, setBestProducts] = useState<ProductInterface[]>([]); // 서버에서 받아올 BestProudcts를 할당할 state

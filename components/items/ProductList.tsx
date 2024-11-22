@@ -3,24 +3,11 @@ import Product from "./Product";
 import DropDown from "./DropDown";
 import Search from "./Search";
 import Paginations from "./Paginations";
-import { fetchProducts } from "@/pages/api/api";
+import { fetchProducts } from "@/pages/api/productApi";
 import PrimaryButton from "../common/PrimaryButton";
-import { updateProductsPerPage } from "@/hooks/checkDevice";
 import Link from "next/link";
 import useWindowSize from "@/hooks/useWindowSize";
-
-export interface ProductInterface {
-  createdAt: string;
-  favoriteCount: number;
-  ownerNickname: string;
-  ownerId: number;
-  images: string[];
-  tags: string[];
-  price: number;
-  description: string;
-  name: string;
-  id: number;
-}
+import { ProductInterface } from "@/types/product";
 
 function ProductList() {
   const showPerPage = useWindowSize();

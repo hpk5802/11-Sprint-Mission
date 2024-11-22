@@ -1,6 +1,6 @@
 import { INITIAL_INPUT, ProductInputReducer } from "@/reducers/productReducer";
 import { FormEvent, useEffect, useReducer, useState } from "react";
-import { postProduct } from "@/pages/api/api";
+import { postProduct } from "@/pages/api/productApi";
 import Header from "@/components/common/Header";
 import PrimaryButton from "@/components/common/PrimaryButton";
 import ImgFileInput from "@/components/addItem/ImgFileInput";

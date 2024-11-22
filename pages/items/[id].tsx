@@ -4,7 +4,7 @@ import {
   fetchInquiryById,
   fetchProductById,
   postComment,
-} from "@/pages/api/api";
+} from "@/pages/api/productApi";
 import DetailProduct from "@/components/detail/DetailProduct";
 import PrimaryButton from "@/components/common/PrimaryButton";
 import DetailInquiry from "@/components/detail/DetailInquiry";

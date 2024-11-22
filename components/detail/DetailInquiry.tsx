@@ -1,6 +1,6 @@
 import { useState } from "react";
 import DropDownInquiry from "./DropDownInquiry";
-import { updateComment, updateCommentInterface } from "@/pages/api/api";
+import { updateComment, updateCommentInterface } from "@/pages/api/productApi";
 import { calculateGapTime } from "@/utils/formatDate";
 import Image from "next/image";
 

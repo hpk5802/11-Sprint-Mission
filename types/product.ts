@@ -1,3 +1,15 @@
+interface ProductInterface {
+  createdAt: string;
+  favoriteCount: number;
+  ownerNickname: string;
+  ownerId: number;
+  images: string[];
+  tags: string[];
+  price: number;
+  description: string;
+  name: string;
+  id: number;
+}
 interface ProductInputState {
   images: string[];
   name: string;
@@ -13,4 +25,4 @@ type ProductInputAction =
   | { type: "SET_PRICE"; payload: number }
   | { type: "SET_TAGS"; payload: string[] };
 
-export { ProductInputState, ProductInputAction };
+export { ProductInterface, ProductInputState, ProductInputAction };

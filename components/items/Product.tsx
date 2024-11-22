@@ -1,8 +1,8 @@
-import { ProductInterface } from "./ProductList";
 import Link from "next/link";
 import ImageComponent from "../common/ImageComponent";
 import { formatPriceToKRW } from "@/utils/formatPrice";
 import Image from "next/image";
+import { ProductInterface } from "@/types/product";
 
 function Product({ product }: { product: ProductInterface }) {
   const { id, name, price, favoriteCount, images } = product;
