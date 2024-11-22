@@ -7,6 +7,7 @@ import Link from "next/link";
 import useWindowSize from "@/hooks/useWindowSize";
 import Search from "../items/Search";
 import DropDown from "../items/DropDown";
+import Paginations from "../items/Paginations";
 
 const sortOptions = [
   {
@@ -47,10 +48,24 @@ function ArticleList() {
     [currentPage, keyword, order, productsPerPage]
   );
 
+  /**
+   * pagination 핸들러
+   * @param {*} page active 페이지
+   */
+  const handlePageChange = (page: number) => setCurrentPage(page);
+
   useEffect(() => {
     // initail 데이터 로드
     loadArticles();
   }, [loadArticles]);
+
+  useEffect(() => {
+    setProductsPerPage(showPerPage);
+  }, [showPerPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [order, keyword]);
 
   return (
     <section id='section_all'>
@@ -63,13 +78,20 @@ function ArticleList() {
         <DropDown order={sortOptions} setOrder={setOrder} />
       </div>
       {articles.list.length > 0 ? (
-        <ul className='article-wrap'>
-          {articles.list.map((article) => (
-            <li key={article.id}>
-              <Article article={article} />
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul className='article-wrap'>
+            {articles.list.map((article) => (
+              <li key={article.id}>
+                <Article article={article} />
+              </li>
+            ))}
+          </ul>
+          <Paginations
+            totalPage={articles.totalArticlesCount}
+            currentPage={currentPage}
+            handlePageChange={handlePageChange}
+          />
+        </>
       ) : (
         <div className='no-result'>검색 내용이 없습니다...</div>
       )}
