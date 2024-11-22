@@ -26,13 +26,14 @@ function ArticleList() {
     list: ArticleInterface[];
     totalArticlesCount: number;
   }>({ list: [], totalArticlesCount: 0 });
-  const [productsPerPage, setProductsPerPage] = useState(showPerPage); // 반응형에 따라 보여줄 Product 수를 할당할 state
+  const [productsPerPage, setProductsPerPage] = useState<number | null>(null); // 반응형에 따라 보여줄 Product 수를 할당할 state
   const [order, setOrder] = useState("recent"); // 데이터 정렬을 위한 queryParam [orderBy]
   const [currentPage, setCurrentPage] = useState(1); // 데이터 호출을 위한 queryParam [page]
   const [keyword, setKeyword] = useState("");
 
   const loadArticles = useCallback(
-    (page = currentPage.toString(), pageSize = productsPerPage.toString()) => {
+    (page = currentPage.toString(), pageSize = productsPerPage?.toString()) => {
+      if (productsPerPage === null) return;
       fetchArticles({
         page,
         pageSize: pageSize,

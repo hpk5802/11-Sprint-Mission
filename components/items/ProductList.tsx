@@ -26,7 +26,7 @@ function ProductList() {
     list: ProductInterface[];
     totalProductsCount: number;
   }>({ list: [], totalProductsCount: 0 }); // 서버에서 받아올 Proudcts를 할당할 state
-  const [productsPerPage, setProductsPerPage] = useState(showPerPage); // 반응형에 따라 보여줄 Product 수를 할당할 state
+  const [productsPerPage, setProductsPerPage] = useState<number | null>(null); // 반응형에 따라 보여줄 Product 수를 할당할 state
   const [order, setOrder] = useState("recent"); // 데이터 정렬을 위한 queryParam [orderBy]
   const [currentPage, setCurrentPage] = useState(1); // 데이터 호출을 위한 queryParam [page]
   const [keyword, setKeyword] = useState("");
@@ -36,7 +36,8 @@ function ProductList() {
    * 재사용을 위해 useCallback Hook으로 함수 캐싱 -> React: exhustive-deps Eslint 방지
    */
   const loadProducts = useCallback(
-    (page = currentPage.toString(), pageSize = productsPerPage.toString()) => {
+    (page = currentPage.toString(), pageSize = productsPerPage?.toString()) => {
+      if (productsPerPage === null) return;
       fetchProducts({ page, pageSize, orderBy: order, keyword: keyword }).then(
         ({ list, totalCount }) => {
           const totalPageCount = Math.ceil(totalCount / productsPerPage);
