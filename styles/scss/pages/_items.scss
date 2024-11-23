@@ -102,9 +102,9 @@
         gap: 4rem 1.6rem;
         &.favorite {
           grid-template-columns: repeat(2, 1fr);
-          .product-item:nth-child(n + 3) {
-            display: none;
-          }
+          // .product-item:nth-child(n + 3) {
+          //   display: none;
+          // }
         }
         &.all {
           grid-template-columns: repeat(3, 1fr);
@@ -150,9 +150,9 @@
         gap: 4rem 0.8rem;
         &.favorite {
           grid-template-columns: repeat(1, 1fr);
-          .product-item:nth-child(n + 2) {
-            display: none;
-          }
+          // .product-item:nth-child(n + 2) {
+          //   display: none;
+          // }
         }
         &.all {
           grid-template-columns: repeat(2, 1fr);

@@ -21,7 +21,7 @@ const sortOptions = [
 ];
 
 function ArticleList() {
-  const showPerPage = useWindowSize();
+  const showPerPage = useWindowSize().page;
   const [articles, setArticles] = useState<{
     list: ArticleInterface[];
     totalArticlesCount: number;

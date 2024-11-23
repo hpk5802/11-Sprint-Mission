@@ -21,7 +21,7 @@ const sortOptions = [
 ];
 
 function ProductList() {
-  const showPerPage = useWindowSize();
+  const showPerPage = useWindowSize().page;
   const [products, setProducts] = useState<{
     list: ProductInterface[];
     totalProductsCount: number;

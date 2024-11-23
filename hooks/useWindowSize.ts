@@ -11,17 +11,25 @@ const devices = {
  * @returns isDesktop : 화면 사이즈 1200 이상인지
  */
 function useWindowSize() {
-  const [page, setPage] = useState(10); // 기본값 4로 설정
+  const [page, setPage] = useState<number | null>(null); // 기본값 4로 설정
+  const [pageBestProduct, setPageBestProduct] = useState<number | null>(null);
+  const [pageBestArticle, setPageBestArticle] = useState<number | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const handleResize = throttle(() => {
         if (window.innerWidth >= devices.desktop) {
           setPage(10);
+          setPageBestProduct(4);
+          setPageBestArticle(3);
         } else if (window.innerWidth >= devices.tablet) {
           setPage(6);
+          setPageBestProduct(2);
+          setPageBestArticle(2);
         } else {
           setPage(4);
+          setPageBestProduct(1);
+          setPageBestArticle(1);
         }
       }, 500);
 
@@ -38,7 +46,7 @@ function useWindowSize() {
     }
   }, []); // 의존성 배열 비워두기, 한 번만 실행되도록
 
-  return page;
+  return { page, pageBestProduct, pageBestArticle };
 }
 
 export default useWindowSize;

@@ -2053,9 +2053,6 @@ footer .footer-wrap .sns a img {
   .page-items section .products-wrap.favorite {
     grid-template-columns: repeat(2, 1fr);
   }
-  .page-items section .products-wrap.favorite .product-item:nth-child(n+3) {
-    display: none;
-  }
   .page-items section .products-wrap.all {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -2095,9 +2092,6 @@ footer .footer-wrap .sns a img {
   }
   .page-items section .products-wrap.favorite {
     grid-template-columns: repeat(1, 1fr);
-  }
-  .page-items section .products-wrap.favorite .product-item:nth-child(n+2) {
-    display: none;
   }
   .page-items section .products-wrap.all {
     grid-template-columns: repeat(2, 1fr);
@@ -2225,9 +2219,6 @@ footer .footer-wrap .sns a img {
   .page-boards section .article-wrap.best {
     gap: 1.6rem;
   }
-  .page-boards section .article-wrap.best li:nth-child(n+3) {
-    display: none;
-  }
 }
 @media (max-width: 767px) {
   .page-boards section {
@@ -2237,9 +2228,6 @@ footer .footer-wrap .sns a img {
     margin-bottom: 1.6rem;
     font-size: 1.8rem;
     line-height: 2.6rem;
-  }
-  .page-boards section .article-wrap.best li ~ li {
-    display: none;
   }
 }
 /* BreakPoint Tablet */
