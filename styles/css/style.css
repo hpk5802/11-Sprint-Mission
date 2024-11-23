@@ -2143,6 +2143,9 @@ footer .footer-wrap .sns a img {
 .page-boards section + section {
   margin-top: 4rem;
 }
+.page-boards section#section_all {
+  margin-bottom: 4rem;
+}
 .page-boards section .article-title {
   margin-bottom: 2.4rem;
   font-size: 2rem;
@@ -2210,6 +2213,9 @@ footer .footer-wrap .sns a img {
   font-size: 2.8rem;
   font-weight: var(--bold);
   text-align: center;
+}
+.page-boards section .end-point {
+  height: 0.1rem;
 }
 
 @media (max-width: 1199px) {
