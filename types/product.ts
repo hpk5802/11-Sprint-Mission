@@ -25,4 +25,4 @@ type ProductInputAction =
   | { type: "SET_PRICE"; payload: number }
   | { type: "SET_TAGS"; payload: string[] };
 
-export { ProductInterface, ProductInputState, ProductInputAction };
+export type { ProductInterface, ProductInputState, ProductInputAction };

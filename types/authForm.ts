@@ -30,4 +30,4 @@ type AuthFormAction =
       };
     };
 
-export { AuthInputState, AuthFormState, AuthFormAction, FiledType };
+export type { AuthInputState, AuthFormState, AuthFormAction, FiledType };
