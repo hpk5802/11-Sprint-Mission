@@ -12,4 +12,4 @@ interface ArticleInterface {
   };
 }
 
-export { ArticleInterface };
+export type { ArticleInterface };
