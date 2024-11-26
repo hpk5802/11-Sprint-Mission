@@ -21,7 +21,7 @@ const sortOptions = [
 ];
 
 function ProductList() {
-  const showPerPage = useWindowSize().page;
+  const { page } = useWindowSize();
   const [products, setProducts] = useState<{
     list: ProductInterface[];
     totalProductsCount: number;
@@ -62,8 +62,8 @@ function ProductList() {
   }, [loadProducts]);
 
   useEffect(() => {
-    setProductsPerPage(showPerPage);
-  }, [showPerPage]);
+    setProductsPerPage(page);
+  }, [page]);
 
   useEffect(() => {
     setCurrentPage(1);

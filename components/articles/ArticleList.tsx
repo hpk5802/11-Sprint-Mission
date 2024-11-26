@@ -20,7 +20,7 @@ const sortOptions = [
 ];
 
 function ArticleList() {
-  const showPerPage = useWindowSize().page;
+  const { page } = useWindowSize();
   const [articles, setArticles] = useState<ArticleInterface[]>([]);
   const [productsPerPage, setProductsPerPage] = useState<number | null>(null); // 반응형에 따라 보여줄 Product 수를 할당할 state
   const [order, setOrder] = useState("recent"); // 데이터 정렬을 위한 queryParam [orderBy]
@@ -72,8 +72,8 @@ function ArticleList() {
     setHasMoreData(true);
     setIsInitial(true);
     setCurrentPage(1);
-    setProductsPerPage(showPerPage);
-  }, [showPerPage]);
+    setProductsPerPage(page);
+  }, [page]);
 
   useEffect(() => {
     setHasMoreData(true);
