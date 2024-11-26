@@ -23,7 +23,7 @@ function ArticleList() {
   const { page } = useWindowSize();
   const [articles, setArticles] = useState<ArticleInterface[]>([]);
   const [productsPerPage, setProductsPerPage] = useState<number | null>(null); // 반응형에 따라 보여줄 Product 수를 할당할 state
-  const [order, setOrder] = useState("recent"); // 데이터 정렬을 위한 queryParam [orderBy]
+  const [order, setOrder] = useState(sortOptions[0].value); // 데이터 정렬을 위한 queryParam [orderBy]
   const [keyword, setKeyword] = useState("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isInitial, setIsInitial] = useState(true); // Observer API와 Initial Load의 충돌 방지를 위한 state
