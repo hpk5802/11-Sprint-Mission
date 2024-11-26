@@ -1,6 +1,5 @@
 import { formatPriceToKRW } from "@/utils/formatPrice";
 import { formatDate } from "@/utils/formatDate";
-import Image from "next/image";
 import ImageProduct from "../items/ImageProduct";
 
 interface DetailProductProps {

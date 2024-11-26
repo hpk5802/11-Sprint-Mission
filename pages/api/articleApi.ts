@@ -23,7 +23,38 @@ const fetchArticles = async ({
   }
 };
 
-const uploadImage = async (file) => {
+const fetchArticleById = async (id: string) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/articles/${id}`
+    );
+    if (!response.ok) {
+      throw new Error("데이터 불러오기 실패");
+    }
+
+    return await response.json();
+  } catch (error) {
+    throw error;
+  }
+};
+
+const fetchInquiryById = async (id: string, cursor: string | null = null) => {
+  try {
+    const queryParams = new URLSearchParams({ limit: "5" });
+    if (cursor) queryParams.set("cursor", cursor);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/articles/${id}/comments?${queryParams}`
+    );
+    if (!response.ok) {
+      throw new Error("데이터 불러오기 실패");
+    }
+    return await response.json();
+  } catch (error) {
+    throw error;
+  }
+};
+
+const uploadImage = async (file: string) => {
   const formData = new FormData();
   formData.append("image", file);
 
@@ -91,4 +122,4 @@ const postArticle = async ({ title, content, image }: FormInputInterface) => {
   }
 };
 
-export { fetchArticles, postArticle };
+export { fetchArticles, fetchArticleById, fetchInquiryById, postArticle };

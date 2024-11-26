@@ -138,7 +138,8 @@
       }
     }
   }
-  .product-inquiry-wrap {
+  .product-inquiry-wrap,
+  .article-inquiry-wrap {
     form {
       label {
         display: block;
@@ -172,6 +173,79 @@
         display: block;
         margin: 0 0 0 auto;
       }
+    }
+  }
+  .article-detail-contents {
+    margin-bottom: 3.2rem;
+    .desc-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      margin-bottom: 2.4rem;
+      padding-bottom: 1.6rem;
+      border-bottom: 0.1rem solid var(--gray200);
+    }
+    .detail-title {
+      font-size: 2rem;
+      font-weight: var(--bold);
+      line-height: 3.2rem;
+      color: var(--gray800);
+    }
+    .detail-writer-wrap {
+      display: flex;
+      align-items: center;
+      .writer-img {
+        width: 4rem;
+        height: 4rem;
+        margin-right: 1.6rem;
+      }
+      .writer-name {
+        margin-right: 0.8rem;
+        font-size: 1.4rem;
+        font-weight: var(--medium);
+        line-height: 2.4rem;
+        color: var(--gray600);
+      }
+      .update-date {
+        margin-right: 4.4rem;
+        font-size: 1.4rem;
+        line-height: 2.4rem;
+        color: var(--gray400);
+      }
+      .like-count {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0 0.4rem;
+        padding: 0.4rem 1.2rem 0.2rem;
+        border-radius: 3.5rem;
+        border: 0.1rem solid var(--gray200);
+        background-color: var(--white);
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -2.4rem;
+          width: 0.1rem;
+          height: 100%;
+          background-color: var(--gray200);
+        }
+        .icon-heart {
+          width: 3.2rem;
+          height: 3.2rem;
+        }
+        span {
+          font-size: 1.6rem;
+          font-weight: var(--medium);
+          line-height: 2.6rem;
+          color: var(--gray500);
+        }
+      }
+    }
+    .detail-desc {
+      font-size: 1.8rem;
+      line-height: 2.6rem;
+      color: var(--gray800);
     }
   }
   .end-point {
