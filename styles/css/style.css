@@ -206,7 +206,7 @@ pre {
  */
 a {
   background-color: transparent;
-  color: #000;
+  color: var(--black);
   text-decoration: none;
   cursor: pointer;
 }
@@ -477,6 +477,14 @@ template {
   --gray200: #e5e7eb;
   --gray100: #f3f4f6;
   --gray50: #f9fafb;
+  --black: #000000;
+  --white: #ffffff;
+  --milkWhite: #fcfcfc;
+  --hawkesBlue: #cfe5ff;
+  --pattensBlue: #e6f2ff;
+  --clearBlue: #2f80ed;
+  --lightGray: #dfdfdf;
+  --iron: #d1d5db;
   /* Color-Error */
   --error: #f74747;
   /* Font-Weight */
@@ -533,8 +541,8 @@ header {
   height: 7rem;
   /* 로고 & 로그인 버튼 여백 200px 유지하기 위해 rem 사용 X */
   padding: 0.8rem 200px;
-  border-bottom: 0.1rem solid #dfdfdf;
-  background-color: #fff;
+  border-bottom: 0.1rem solid var(--lightGray);
+  background-color: var(--white);
 }
 header .logo {
   width: 15.3rem;
@@ -750,7 +758,7 @@ footer .footer-wrap .sns a img {
   padding: 0 2rem;
   border: 0.1rem solid var(--gray200);
   border-radius: 1.2rem;
-  background-color: #fff;
+  background-color: var(--white);
   font-size: 1.6rem;
   line-height: 4.2rem;
   color: var(--gray800);
@@ -780,7 +788,7 @@ footer .footer-wrap .sns a img {
   display: block;
   width: 100%;
   border: 0;
-  background-color: #fff;
+  background-color: var(--white);
   font-size: 1.6rem;
   line-height: 4.2rem;
   text-align: center;
@@ -825,7 +833,7 @@ footer .footer-wrap .sns a img {
   background-color: var(--gray400);
 }
 .btn-primary.hover {
-  box-shadow: 0.2rem 0.2rem 0.1rem #000;
+  box-shadow: 0.2rem 0.2rem 0.1rem var(--black);
 }
 
 .pagination {
@@ -840,14 +848,14 @@ footer .footer-wrap .sns a img {
   height: 4rem;
   border-radius: 50%;
   border: 0.1rem solid var(--gray200);
-  background-color: #fff;
+  background-color: var(--white);
   font-size: 1.6rem;
   line-height: 2.6rem;
   color: var(--gray500);
 }
 .pagination .btn-pagination.active {
-  background-color: #2f80ed;
-  color: #fff;
+  background-color: var(--clearBlue);
+  color: var(--white);
 }
 .pagination .btn-pagination:not(.active):hover {
   opacity: 0.5;
@@ -1099,7 +1107,7 @@ footer .footer-wrap .sns a img {
   padding: 0.4rem 1.2rem 0.2rem;
   border-radius: 3.5rem;
   border: 0.1rem solid var(--gray200);
-  background-color: #fff;
+  background-color: var(--white);
 }
 .page-detail .product-detail-contents .desc-wrap .detail-footer .btn-favorite::before {
   content: "";
@@ -1171,10 +1179,10 @@ footer .footer-wrap .sns a img {
   background-color: var(--primary100);
   font-size: 1.8rem;
   line-height: 2.6rem;
-  color: #fff;
+  color: var(--white);
 }
 .page-detail .navigate-to-items:hover {
-  outline: 0.1rem solid #000;
+  outline: 0.1rem solid var(--black);
 }
 .page-detail .navigate-to-items span {
   position: relative;
@@ -1316,7 +1324,7 @@ footer .footer-wrap .sns a img {
   line-height: 2.6rem;
 }
 .content-inquiry .inquiry-footer .edit-area .btn-cancel {
-  background-color: #fff;
+  background-color: var(--white);
   padding: 1.4rem 2rem 0.7rem;
   color: var(--gray500);
 }
@@ -1362,7 +1370,7 @@ footer .footer-wrap .sns a img {
   height: 2.4rem;
   padding: 0;
   border: 0;
-  background-color: #fff;
+  background-color: var(--white);
 }
 .btn-open-menu img {
   display: block;
@@ -1376,7 +1384,7 @@ footer .footer-wrap .sns a img {
   top: 3.4rem;
   right: 0;
   border-radius: 0.8rem;
-  border: 0.1rem solid #d1d5db;
+  border: 0.1rem solid var(--iron);
   overflow: hidden;
 }
 .menus button {
@@ -1385,7 +1393,7 @@ footer .footer-wrap .sns a img {
   height: 4.6rem;
   padding: 0 4.15rem;
   border: 0;
-  background-color: #fff;
+  background-color: var(--white);
   font-size: 1.6rem;
   line-height: 2.6rem;
   color: var(--gray500);
@@ -1398,7 +1406,7 @@ footer .footer-wrap .sns a img {
   position: relative;
   margin-top: 2.4rem;
   padding-bottom: 2.4rem;
-  background-color: #fcfcfc;
+  background-color: var(--milkWhite);
   border-bottom: 0.1rem solid var(--gray200);
 }
 .article .medal-wrap {
@@ -1415,7 +1423,7 @@ footer .footer-wrap .sns a img {
   font-size: 1.6rem;
   font-weight: var(--semiBold);
   line-height: 2.6rem;
-  color: #fff;
+  color: var(--white);
 }
 .article .medal-wrap span {
   position: relative;
@@ -1450,7 +1458,7 @@ footer .footer-wrap .sns a img {
   height: 7.2rem;
   border: 0.1rem solid var(--gray200);
   border-radius: 0.6rem;
-  background-color: #fff;
+  background-color: var(--white);
   overflow: hidden;
 }
 .article .desc-wrap {
@@ -1556,7 +1564,7 @@ footer .footer-wrap .sns a img {
   align-items: center;
   justify-content: center;
   border-radius: 1.2rem;
-  background-color: #fcfcfc;
+  background-color: var(--milkWhite);
 }
 .section-layout .section-content .img-home {
   position: relative;
@@ -1576,7 +1584,7 @@ footer .footer-wrap .sns a img {
 .section-layout-bg {
   align-items: end;
   height: 54rem;
-  background-color: #cfe5ff;
+  background-color: var(--hawkesBlue);
 }
 .section-layout-bg .section-content {
   display: flex;
@@ -1615,7 +1623,7 @@ footer .footer-wrap .sns a img {
   justify-content: center;
   width: 98.8rem;
   border-radius: 1.2rem;
-  background-color: #fcfcfc;
+  background-color: var(--milkWhite);
 }
 .section-layout-card .section-content .img-pc {
   position: relative;
@@ -1883,7 +1891,7 @@ footer .footer-wrap .sns a img {
   background-color: var(--primary100);
   font-size: 2rem;
   font-weight: var(--semiBold);
-  color: #fff;
+  color: var(--white);
   /* 폼 양식 input 영역 미완성인 경우 */
 }
 .container form .btn:disabled {
@@ -1896,7 +1904,7 @@ footer .footer-wrap .sns a img {
   justify-content: space-between;
   padding: 1.6rem 2.3rem;
   border-radius: 0.8rem;
-  background-color: #e6f2ff;
+  background-color: var(--pattensBlue);
 }
 .container form .sns-area span {
   font-size: 1.6rem;
