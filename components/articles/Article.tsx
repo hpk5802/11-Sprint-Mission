@@ -2,6 +2,7 @@ import { ArticleInterface } from "@/types/article";
 import { formatDate } from "@/utils/formatDate";
 import ImageArticle from "./ImageArticle";
 import Link from "next/link";
+import clsx from "clsx";
 
 interface ArticleProps {
   isBest?: boolean;
@@ -12,7 +13,7 @@ function Article({ isBest = false, article }: ArticleProps) {
   const { id, title, image, likeCount, writer, updatedAt } = article;
   return (
     <Link href={`/boards/${id}`} title={`${title} 상세보기`}>
-      <div className={["article", isBest ? "best" : ""].join(" ")}>
+      <div className={clsx("article", isBest && "best")}>
         {isBest && (
           <div className='medal-wrap'>
             <span>
