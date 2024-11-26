@@ -1,5 +1,6 @@
 import { FormInputInterface } from "@/types/addBoard";
 import { ArticleInquiryInterface, PostCommentInterface } from "@/types/article";
+import { useRouter } from "next/router";
 
 const fetchArticles = async ({
   page = "1",
@@ -113,7 +114,7 @@ const postArticle = async ({ title, content, image }: FormInputInterface) => {
     const result = await response.json();
 
     if (response.ok) {
-      console.log(result);
+      return result.id;
     } else {
       throw new Error("게시글 추가 실패");
     }

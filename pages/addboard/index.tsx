@@ -5,6 +5,7 @@ import Header from "@/components/common/Header";
 import PrimaryButton from "@/components/common/PrimaryButton";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { postArticle } from "../api/articleApi";
+import { useRouter } from "next/router";
 
 const DEFAULT_VALUE = {
   title: "",
@@ -13,16 +14,18 @@ const DEFAULT_VALUE = {
 };
 
 function AddBoard() {
+  const router = useRouter();
   const { register, handleSubmit, watch, setValue, getValues } =
     useForm<FieldValues>({
       mode: "onChange",
       defaultValues: DEFAULT_VALUE,
     });
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const { title, content, image } = data;
     const path = image || null;
 
-    postArticle({ title, content, image: path });
+    const resId = await postArticle({ title, content, image: path });
+    router.push(`/boards/${resId}`);
   };
   return (
     <>
