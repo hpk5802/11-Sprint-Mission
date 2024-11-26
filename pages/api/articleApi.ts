@@ -3,7 +3,7 @@ const fetchArticles = async ({
   pageSize = "10",
   orderBy = "like",
   keyword = "",
-} = {}) => {
+}) => {
   try {
     const queryParams = new URLSearchParams({ page, pageSize, orderBy });
     if (keyword) queryParams.set("keyword", keyword);
