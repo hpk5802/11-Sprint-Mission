@@ -3,7 +3,11 @@ import DetailArticle from "@/components/detail/DetailArticle";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
-import { fetchArticleById, fetchInquiryById } from "../api/articleApi";
+import {
+  fetchArticleById,
+  fetchInquiryById,
+  postArticleComment,
+} from "../api/articleApi";
 import { ArticleCommentInterface, ArticleInterface } from "@/types/article";
 import PrimaryButton from "@/components/common/PrimaryButton";
 import DetailInquiry from "@/components/detail/DetailInquiry";
@@ -59,12 +63,20 @@ function Detail() {
    * @param {*} e
    */
   const handleSubmit = useCallback(
-    (e: FormEvent) => {
+    async (e: FormEvent) => {
       e.preventDefault();
       if (!id) {
         throw new Error("Id is null");
       }
-      postComment(id, { content: newComment }); // Jwt Token 추가 예정
+      const response = await postArticleComment({
+        id: +id,
+        content: newComment,
+      });
+      console.log(response);
+      setComments((prev) => ({
+        ...prev,
+        list: [response, ...prev.list],
+      }));
       setNewComment("");
     },
     [id, newComment]
@@ -135,7 +147,7 @@ function Detail() {
               />
             ))
           ) : (
-            <InquiryEmpty />
+            <InquiryEmpty isArticle={true} />
           )}
         </div>
         {nextCursor && <div className='end-point' ref={endRef} />}

@@ -1,4 +1,5 @@
 import { FormInputInterface } from "@/types/addBoard";
+import { ArticleInquiryInterface, PostCommentInterface } from "@/types/article";
 
 const fetchArticles = async ({
   page = "1",
@@ -117,9 +118,42 @@ const postArticle = async ({ title, content, image }: FormInputInterface) => {
       throw new Error("게시글 추가 실패");
     }
   } catch (error) {
-    console.error("게시글 추가 중 에러 발생:", error);
     throw error;
   }
 };
 
-export { fetchArticles, fetchArticleById, fetchInquiryById, postArticle };
+const postArticleComment = async ({
+  id,
+  content,
+}: PostCommentInterface): Promise<ArticleInquiryInterface> => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/articles/${id}/comments`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        },
+        body: JSON.stringify({ content }),
+      }
+    );
+
+    const result = await response.json();
+    if (response.ok) {
+      return result;
+    } else {
+      throw new Error("댓글 추가 실패");
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
+export {
+  fetchArticles,
+  fetchArticleById,
+  fetchInquiryById,
+  postArticle,
+  postArticleComment,
+};

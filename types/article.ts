@@ -28,4 +28,14 @@ interface ArticleCommentInterface {
   nextCursor: string | null;
 }
 
-export type { ArticleInterface, ArticleCommentInterface };
+interface PostCommentInterface {
+  id: number;
+  content: string;
+}
+
+export type {
+  ArticleInterface,
+  ArticleInquiryInterface,
+  ArticleCommentInterface,
+  PostCommentInterface,
+};

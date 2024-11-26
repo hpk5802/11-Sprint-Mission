@@ -21,7 +21,7 @@ const calculateGapTime = (date: string) => {
   } else if (differenceInHour > 0) {
     return differenceInHour + "시간 전";
   } else {
-    return differenceInMinutes + "분 전";
+    return differenceInMinutes > 0 ? differenceInMinutes : 0 + "분 전";
   }
 };
 
