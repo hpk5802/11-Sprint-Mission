@@ -1,4 +1,4 @@
-import { throttle } from "lodash";
+import { debounce } from "lodash";
 import { useEffect, useState } from "react";
 
 const devices = {
@@ -17,7 +17,7 @@ function useWindowSize() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const handleResize = throttle(() => {
+      const handleResize = debounce(() => {
         if (window.innerWidth >= devices.desktop) {
           setPage(10);
           setPageBestProduct(4);
