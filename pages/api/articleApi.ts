@@ -1,5 +1,3 @@
-const SERVER_URL = "https://panda-market-api.vercel.app";
-
 const fetchArticles = async ({
   page = "1",
   pageSize = "10",
@@ -10,7 +8,9 @@ const fetchArticles = async ({
     const queryParams = new URLSearchParams({ page, pageSize, orderBy });
     if (keyword) queryParams.set("keyword", keyword);
 
-    const response = await fetch(`${SERVER_URL}/articles?${queryParams}`);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/articles?${queryParams}`
+    );
     if (!response.ok) {
       throw new Error("데이터 불러오기 실패");
     }
