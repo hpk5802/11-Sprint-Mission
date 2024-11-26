@@ -95,7 +95,26 @@ function ImgFileInput({
           onClick={handleClick}
         >
           <span>
-            <Image fill src='/icons/ic_plus.svg' alt='이미지 등록' />
+            <svg
+              width='48'
+              height='48'
+              viewBox='0 0 48 48'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M10 24H38'
+                stroke='#9CA3AF'
+                stroke-width='4'
+                stroke-linecap='round'
+              />
+              <path
+                d='M24 38V10'
+                stroke='#9CA3AF'
+                stroke-width='4'
+                stroke-linecap='round'
+              />
+            </svg>
           </span>
           이미지 등록
         </button>
