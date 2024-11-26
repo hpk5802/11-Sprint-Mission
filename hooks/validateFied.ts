@@ -18,6 +18,17 @@ const fieldName: fieldNameProp = {
   nickname: "닉네임",
 };
 
+const errorMessages = {
+  email: "잘못된 이메일 형식입니다.",
+  nickName: "닉네임은 2글자 이상 입력해 주세요.",
+  password: {
+    length: "비밀번호를 8자리 이상 입력해 주세요.",
+    cantFind: "비밀번호를 확인할 수 없습니다.",
+    diff: "비밀번호가 일치하지 않습니다.",
+  },
+  noExist: "검사할 수 없는 필드입니다.",
+};
+
 /**
  * Input의 입력 유효성을 검사하는 함수
  * @param field : 유효성 검사를 진행할 Input 필드
@@ -51,7 +62,7 @@ function validateField(
       const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/;
       return emailRegex.test(val)
         ? { isValid: true, errorMessage: "" }
-        : { isValid: false, errorMessage: "잘못된 이메일 형식입니다." };
+        : { isValid: false, errorMessage: errorMessages.email };
     },
     /**
      * 닉네임이 2글자 이상인지 검사
@@ -62,7 +73,7 @@ function validateField(
         ? { isValid: true, errorMessage: "" }
         : {
             isValid: false,
-            errorMessage: "닉네임은 2글자 이상 입력해 주세요.",
+            errorMessage: errorMessages.nickName,
           };
     },
     /**
@@ -74,7 +85,7 @@ function validateField(
         ? { isValid: true, errorMessage: "" }
         : {
             isValid: false,
-            errorMessage: "비밀번호를 8자리 이상 입력해 주세요.",
+            errorMessage: errorMessages.password.length,
           };
     },
     /**
@@ -87,19 +98,19 @@ function validateField(
       if (!formState)
         return {
           isValid: false,
-          errorMessage: "비밀번호를 확인할 수 없습니다.",
+          errorMessage: errorMessages.password.cantFind,
         };
       if (val.length < 8)
         return {
           isValid: false,
-          errorMessage: "비밀번호를 8자리 이상 입력해 주세요.",
+          errorMessage: errorMessages.password.length,
         };
       return val === formState.password
         ? { isValid: true, errorMessage: "" }
-        : { isValid: false, errorMessage: "비밀번호가 일치하지 않습니다." };
+        : { isValid: false, errorMessage: errorMessages.password.diff };
     },
     default: () => {
-      throw new Error("검사할 수 없는 필드입니다.");
+      throw new Error(errorMessages.noExist);
     },
   };
 
