@@ -102,7 +102,7 @@ function ArticleList() {
     <section id='section_all'>
       <h2 className='article-title'>게시글</h2>
       <PrimaryButton name='btn-register'>
-        <Link href='/addArticle'>글쓰기</Link>
+        <Link href='/addboard'>글쓰기</Link>
       </PrimaryButton>
       <div className='filter-area'>
         <Search setKeyword={setKeyword} />
