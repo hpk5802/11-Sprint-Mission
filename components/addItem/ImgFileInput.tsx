@@ -105,14 +105,14 @@ function ImgFileInput({
               <path
                 d='M10 24H38'
                 stroke='#9CA3AF'
-                stroke-width='4'
-                stroke-linecap='round'
+                strokeWidth='4'
+                strokeLinecap='round'
               />
               <path
                 d='M24 38V10'
                 stroke='#9CA3AF'
-                stroke-width='4'
-                stroke-linecap='round'
+                strokeWidth='4'
+                strokeLinecap='round'
               />
             </svg>
           </span>

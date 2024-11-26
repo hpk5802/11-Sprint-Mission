@@ -64,7 +64,11 @@ function ArticleList() {
 
   useEffect(() => {
     // initail 데이터 로드
-    loadArticles();
+    try {
+      loadArticles();
+    } catch {
+      throw new Error("데이터 불러오기 실패");
+    }
   }, [loadArticles]);
 
   // 디바이스 분기처리 - page를 1로 초기화해 서버의 page=1 부터 데이터 새로 로드

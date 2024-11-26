@@ -11,7 +11,6 @@ import DetailInquiry from "@/components/detail/DetailInquiry";
 import InquiryEmpty from "@/components/detail/InquiryEmpty";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Image from "next/image";
 
 interface InputState {
   name: string;
@@ -164,7 +163,7 @@ function Detail() {
           {list.length > 0 ? (
             list.map(({ id, content, writer, updatedAt }) => (
               <DetailInquiry
-                key={`comment_${id}`}
+                key={id}
                 id={id.toString()}
                 content={content}
                 writer={writer}
