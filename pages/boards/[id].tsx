@@ -72,7 +72,6 @@ function Detail() {
         id: +id,
         content: newComment,
       });
-      console.log(response);
       setComments((prev) => ({
         ...prev,
         list: [response, ...prev.list],
