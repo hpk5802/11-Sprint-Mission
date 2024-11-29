@@ -1,10 +1,14 @@
-import Head from "next/head";
 import Header from "@/components/common/Header";
 import Link from "next/link";
 import Footer from "@/components/common/Footer";
 import Image from "next/image";
+import { useEffect } from "react";
+import { SetTokensToLocalStorage } from "./api/articleApi";
 
 export default function Home() {
+  useEffect(() => {
+    SetTokensToLocalStorage();
+  }, []);
   return (
     <>
       <Header />
