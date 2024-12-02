@@ -5,7 +5,7 @@
   position: relative;
   margin-top: 2.4rem;
   padding-bottom: 2.4rem;
-  background-color: #fcfcfc;
+  background-color: var(--milkWhite);
   border-bottom: 0.1rem solid var(--gray200);
   .medal-wrap {
     position: absolute;
@@ -21,7 +21,7 @@
     font-size: 1.6rem;
     font-weight: var(--semiBold);
     line-height: 2.6rem;
-    color: #fff;
+    color: var(--white);
     span {
       position: relative;
       display: inline-block;
@@ -55,7 +55,7 @@
       height: 7.2rem;
       border: 0.1rem solid var(--gray200);
       border-radius: 0.6rem;
-      background-color: #fff;
+      background-color: var(--white);
       overflow: hidden;
     }
   }

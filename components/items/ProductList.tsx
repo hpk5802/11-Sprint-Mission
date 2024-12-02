@@ -21,13 +21,13 @@ const sortOptions = [
 ];
 
 function ProductList() {
-  const showPerPage = useWindowSize().page;
+  const { page } = useWindowSize();
   const [products, setProducts] = useState<{
     list: ProductInterface[];
     totalProductsCount: number;
   }>({ list: [], totalProductsCount: 0 }); // 서버에서 받아올 Proudcts를 할당할 state
   const [productsPerPage, setProductsPerPage] = useState<number | null>(null); // 반응형에 따라 보여줄 Product 수를 할당할 state
-  const [order, setOrder] = useState("recent"); // 데이터 정렬을 위한 queryParam [orderBy]
+  const [order, setOrder] = useState(sortOptions[0].value); // 데이터 정렬을 위한 queryParam [orderBy]
   const [currentPage, setCurrentPage] = useState(1); // 데이터 호출을 위한 queryParam [page]
   const [keyword, setKeyword] = useState("");
 
@@ -62,8 +62,8 @@ function ProductList() {
   }, [loadProducts]);
 
   useEffect(() => {
-    setProductsPerPage(showPerPage);
-  }, [showPerPage]);
+    setProductsPerPage(page);
+  }, [page]);
 
   useEffect(() => {
     setCurrentPage(1);

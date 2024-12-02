@@ -1,92 +1,67 @@
-import { ProductInputAction } from "@/types/product";
+import { FormInputInterface } from "@/types/addBoard";
 import Image from "next/image";
-import {
-  ChangeEvent,
-  Dispatch,
-  PropsWithChildren,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
+import { FieldValues, UseFormRegister, UseFormWatch } from "react-hook-form";
 
 interface ImgFileInputProps {
-  images: string[];
-  name: string;
+  name: keyof FormInputInterface;
+  register: UseFormRegister<FieldValues>;
+  watch: UseFormWatch<FieldValues>;
+  setValue: any;
   children: ReactNode;
-  dispatch: Dispatch<ProductInputAction>;
 }
 
 function ImgFileInput({
-  children,
-  images,
   name,
-  dispatch,
-}: PropsWithChildren<ImgFileInputProps>) {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [showWarn, setShowWarn] = useState(false); // 이미지를 1개 이상 추가하려고 할 때를 위한 state
-  const isFilled = images.length > 0;
-
-  /**
-   * form의 이미지를 저장하고 화면에 추가한 이미지를 렌더링
-   * @param {*} path 인코딩된 파일 스트링
-   */
-  const setImg = (path?: string) => {
-    dispatch({ type: "SET_IMAGES", payload: path ? [path] : [] });
-  };
+  register,
+  watch,
+  setValue,
+  children,
+}: ImgFileInputProps) {
+  const [imagePath, setImagePath] = useState<string | null>(null);
+  const [showWarn, setShowWarn] = useState(false);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const img = watch(name);
 
   /**
    * 이미지 파일 추가 - 1개 이상인 경우 클릭 시 경고 노출
    */
   const handleClick = () => {
-    if (!isFilled && inputRef.current) inputRef.current.click();
+    if (!imagePath && inputRef.current) inputRef.current.click();
     else setShowWarn(true);
-  };
-
-  /**
-   * 입력 받은 파일을 인코딩하고 저장 및 렌더링
-   * @param {*} e
-   */
-  const handleFileInput = (e: ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files && files[0]) {
-      const imgUrl = files[0];
-      const imgPath = URL.createObjectURL(imgUrl);
-      setImg(imgPath);
-
-      if (inputRef.current) inputRef.current.value = "";
-    }
   };
 
   /**
    * 이미지 삭제
    */
   const handleDelete = () => {
-    setImg();
+    setImagePath(null);
+    setValue(name, null);
     setShowWarn(false);
   };
 
-  /**
-   * 컴포넌트 언마운트 시 객체 URL이 있으면 해제
-   */
   useEffect(() => {
-    return () => {
-      if (images.length > 0) URL.revokeObjectURL(images[0]);
-    };
-  }, [images]);
-
+    if (img && img[0]) {
+      const file = img[0];
+      setImagePath(URL.createObjectURL(file));
+    } else {
+      setImagePath(null);
+    }
+  }, [img]);
   return (
     <div className='form-input-wrap'>
-      <label htmlFor={`item_${name}`}>{children}</label>
+      <label>{children}</label>
       <input
-        ref={inputRef}
-        id={`item_${name}`}
-        className='sr-only'
         type='file'
+        className='sr-only'
         accept='image/*'
-        disabled={isFilled}
-        onChange={handleFileInput}
+        {...register(name)}
+        ref={(el) => {
+          inputRef.current = el;
+          register(name).ref(el);
+        }}
       />
+      {/* className='sr-only' */}
       <div className='upload-area'>
         <button
           className='btn-upload-img'
@@ -118,9 +93,9 @@ function ImgFileInput({
           </span>
           이미지 등록
         </button>
-        {isFilled && (
+        {imagePath && (
           <div className='thumbnail'>
-            <Image fill src={images[0]} alt='thumbnail' />
+            <Image fill src={imagePath} alt='thumbnail' />
             <button
               type='button'
               className='btn-delete-thumbnail'

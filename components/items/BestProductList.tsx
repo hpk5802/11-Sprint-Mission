@@ -5,7 +5,7 @@ import { ProductInterface } from "@/types/product";
 import useWindowSize from "@/hooks/useWindowSize";
 
 function BestProductList() {
-  const showPerPage = useWindowSize().pageBestProduct;
+  const { pageBestProduct } = useWindowSize();
   const [bestProducts, setBestProducts] = useState<ProductInterface[]>([]); // 서버에서 받아올 BestProudcts를 할당할 state
   const [productCount, setProductCount] = useState<number | null>(null); // 반응형에 따라 보여줄 Product 수를 할당할 state
 
@@ -26,8 +26,8 @@ function BestProductList() {
   }, [loadBestProducts]);
 
   useEffect(() => {
-    setProductCount(showPerPage);
-  }, [showPerPage]);
+    setProductCount(pageBestProduct);
+  }, [pageBestProduct]);
 
   return (
     <section id='section_favorite'>

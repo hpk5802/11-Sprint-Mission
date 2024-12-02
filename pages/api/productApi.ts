@@ -1,5 +1,3 @@
-const SERVER_URL = "https://panda-market-api.vercel.app";
-
 interface PostProductInterface {
   images: string[];
   tags: string[];
@@ -17,12 +15,14 @@ const fetchProducts = async ({
   pageSize = "10",
   orderBy = "recent",
   keyword = "",
-} = {}) => {
+}) => {
   try {
     const queryParams = new URLSearchParams({ page, pageSize, orderBy });
     if (keyword) queryParams.set("keyword", keyword);
 
-    const response = await fetch(`${SERVER_URL}/products?${queryParams}`);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/products?${queryParams}`
+    );
     if (!response.ok) {
       throw new Error("데이터 불러오기 실패");
     }
@@ -34,7 +34,9 @@ const fetchProducts = async ({
 
 const fetchProductById = async (id: string) => {
   try {
-    const response = await fetch(`${SERVER_URL}/products/${id}`);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/products/${id}`
+    );
     if (!response.ok) {
       throw new Error("데이터 불러오기 실패");
     }
@@ -49,7 +51,7 @@ const fetchInquiryById = async (id: string, cursor: string | null = null) => {
     const queryParams = new URLSearchParams({ limit: "5" });
     if (cursor) queryParams.set("cursor", cursor);
     const response = await fetch(
-      `${SERVER_URL}/products/${id}/comments?${queryParams}`
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/products/${id}/comments?${queryParams}`
     );
     if (!response.ok) {
       throw new Error("데이터 불러오기 실패");
@@ -62,14 +64,17 @@ const fetchInquiryById = async (id: string, cursor: string | null = null) => {
 
 const postProduct = async ({ content }: { content: PostProductInterface }) => {
   try {
-    const response = await fetch(`${SERVER_URL}/products`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // Authorization: 'Jwt Token'
-      },
-      body: JSON.stringify(content),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/products`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: 'Jwt Token'
+        },
+        body: JSON.stringify(content),
+      }
+    );
     if (!response.ok) {
       throw new Error("상품 추가 실패");
     }
@@ -80,14 +85,17 @@ const postProduct = async ({ content }: { content: PostProductInterface }) => {
 
 const postComment = async (id: string, { content }: { content: string }) => {
   try {
-    const response = await fetch(`${SERVER_URL}/products/${id}/comments`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // Authorization: 'Jwt Token'
-      },
-      body: JSON.stringify({ content }),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/products/${id}/comments`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: 'Jwt Token'
+        },
+        body: JSON.stringify({ content }),
+      }
+    );
     if (!response.ok) {
       throw new Error("댓글 추가 실패");
     }
@@ -98,14 +106,17 @@ const postComment = async (id: string, { content }: { content: string }) => {
 
 const updateComment = async (id: string, data: updateCommentInterface) => {
   try {
-    const response = await fetch(`${SERVER_URL}/comments/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        // Authorization: 'Jwt Token'
-      },
-      body: JSON.stringify({ data }),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: 'Jwt Token'
+        },
+        body: JSON.stringify({ data }),
+      }
+    );
     if (!response.ok) {
       throw new Error("댓글 업데이트 실패");
     }

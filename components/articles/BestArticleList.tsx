@@ -5,7 +5,7 @@ import Article from "./Article";
 import useWindowSize from "@/hooks/useWindowSize";
 
 function BestArticleList() {
-  const showPerPage = useWindowSize().pageBestArticle;
+  const { pageBestArticle } = useWindowSize();
   const [articles, setArticles] = useState<ArticleInterface[]>([]);
   const [articleCount, setArticleCount] = useState<number | null>(null); // 반응형에 따라 보여줄 Article 수를 할당할 state
 
@@ -27,8 +27,8 @@ function BestArticleList() {
   }, [loadBestArticles]);
 
   useEffect(() => {
-    setArticleCount(showPerPage);
-  }, [showPerPage]);
+    setArticleCount(pageBestArticle);
+  }, [pageBestArticle]);
 
   return (
     <section id='section_best'>

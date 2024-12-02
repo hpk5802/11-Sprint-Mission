@@ -3,6 +3,7 @@ import validateField from "@/hooks/validateFied";
 import { AuthFormAction, AuthInputState } from "@/types/authForm";
 import { ChangeEvent, Dispatch, FocusEvent } from "react";
 import useInputHandler from "../../hooks/useInputHandler";
+import clsx from "clsx";
 
 interface PasswordInputInterface {
   state: AuthInputState;
@@ -23,7 +24,7 @@ function PassWordInput({ state, handleValue }: PasswordInputInterface) {
       <input
         type={inputType}
         id='input_password'
-        className={["pw", hasFocused ? "" : "not-focused"].join(" ")}
+        className={clsx("pw", !hasFocused && "not-focused")}
         value={value}
         placeholder='비밀번호를 입력해주세요'
         onChange={handleChange}

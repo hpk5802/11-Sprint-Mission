@@ -1,64 +1,22 @@
-import { useState } from "react";
-import DropDownInquiry from "./DropDownInquiry";
-import { updateComment, updateCommentInterface } from "@/pages/api/productApi";
-import { calculateGapTime } from "@/utils/formatDate";
-import Image from "next/image";
+import { ArticleInterface } from "@/types/article";
+import { formatDate } from "@/utils/formatDate";
 
-interface DetailInquiryProps {
-  id: string;
-  content: string;
-  writer: any;
-  updatedAt: string;
-}
-
-function DetailInquiry({ id, content, writer, updatedAt }: DetailInquiryProps) {
-  const [isEditing, setIsEditing] = useState(false); // 수정 상태를 할당할 state
-  const [comment, setComment] = useState(content); // 문의하기 text를 할당할 state
-
-  /**
-   * 취소 버튼 클릭 시 comment에 부모에서 받은 content를 할당
-   */
-  const handleCancelEdit = () => {
-    setIsEditing(false);
-    setComment(content);
-  };
-
-  /**
-   * save하면 서버에 request 보내고 response 받아서 commnets 업데이트
-   */
-  const handleSaveEdit = async () => {
-    try {
-      const updateData: updateCommentInterface = { content: comment };
-      const response = await updateComment(id, updateData); // Jwt Token 추가 예정
-      const data = await response.json(); // 서버에서 받은 response로 새 댓글 추가하는 기능은 추후 추가
-      console.log(data); // netlify build error 방지 임시 콘솔 추가 - The build failure is due to a linting error
-      setIsEditing(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+function DetailArticle({
+  id,
+  title,
+  content,
+  createdAt,
+  updatedAt,
+  likeCount,
+  writer,
+}: ArticleInterface) {
   return (
-    <div className='content-inquiry'>
-      {!isEditing && <DropDownInquiry setIsEditting={setIsEditing} />}
-      <div className='inquiry-comment'>
-        {isEditing ? (
-          <textarea
-            name='inquiry_comment'
-            id='inquiry_comment'
-            value={comment}
-            onChange={({ target }) => setComment(target.value)}
-          />
-        ) : (
-          <p>{content}</p>
-        )}
-      </div>
-      <div className='inquiry-footer'>
-        <div className='user-area'>
-          <div className='writer-icon'>
-            {writer.image ? (
-              <Image fill src={writer.image} alt={writer.nickname} />
-            ) : (
+    <div className='article-detail-contents'>
+      <div className='desc-wrap'>
+        <h2 className='detail-title'>{title}</h2>
+        <div className='detail-writer-wrap'>
+          <div className='writer-img'>
+            <span>
               <svg
                 viewBox='0 0 40 40'
                 fill='none'
@@ -116,26 +74,31 @@ function DetailInquiry({ id, content, writer, updatedAt }: DetailInquiryProps) {
                   </clipPath>
                 </defs>
               </svg>
-            )}
+            </span>
           </div>
-          <div>
-            <div className='writer-name'>{writer.nickname}</div>
-            <div className='date-update'>{calculateGapTime(updatedAt)}</div>
+          <div className='writer-name'>{writer.nickname}</div>
+          <div className='update-date'>{formatDate(updatedAt)}</div>
+          <div className='like-count'>
+            <div className='icon-heart'>
+              <svg
+                viewBox='0 0 32 32'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M6.12025 18.1482C6.1133 18.1421 6.1065 18.1361 6.09984 18.1302V18.0272L5.83623 17.7636C4.39552 16.3229 3.5665 14.4149 3.5665 12.4V12.1474C3.69211 8.24257 7.02101 5.03333 10.9332 5.03333C11.5506 5.03333 12.3377 5.24515 13.1065 5.65909C13.8429 6.0556 14.4984 6.60339 14.9351 7.22713C15.4083 8.27379 16.9116 8.25737 17.3525 7.17788C17.7207 6.52332 18.3603 5.95126 19.1049 5.53603C19.873 5.10766 20.656 4.9 21.1998 4.9C25.2271 4.9 28.4406 8.09104 28.5665 12.1469V12.4C28.5665 14.563 27.7281 16.4504 26.325 17.7366L26.0332 18.0041V18.0985C26.0191 18.1104 26.0047 18.1225 25.99 18.1349C25.782 18.3102 25.4997 18.5534 25.1634 18.8459C24.49 19.4314 23.5879 20.225 22.6048 21.0915C22.2897 21.3692 21.9663 21.6543 21.6393 21.9427C19.9255 23.454 18.1132 25.0522 16.885 26.113C16.4204 26.4957 15.7125 26.4957 15.2479 26.1129C13.783 24.8477 11.4555 22.8195 9.47542 21.089C8.48406 20.2226 7.58041 19.4314 6.91646 18.8486C6.5844 18.5571 6.31276 18.3182 6.12025 18.1482Z'
+                  stroke='#6B7280'
+                  strokeWidth='1.8'
+                />
+              </svg>
+            </div>
+            <span>{likeCount}</span>
           </div>
         </div>
-        {isEditing && (
-          <div className='edit-area'>
-            <button className='btn-cancel' onClick={handleCancelEdit}>
-              취소
-            </button>
-            <button className='btn-edit' onClick={handleSaveEdit}>
-              수정 완료
-            </button>
-          </div>
-        )}
       </div>
+      <div className='detail-desc'>{content}</div>
     </div>
   );
 }
 
-export default DetailInquiry;
+export default DetailArticle;

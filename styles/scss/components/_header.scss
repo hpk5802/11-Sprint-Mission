@@ -9,8 +9,8 @@ header {
   height: 7rem;
   /* 로고 & 로그인 버튼 여백 200px 유지하기 위해 rem 사용 X */
   padding: 0.8rem 200px;
-  border-bottom: 0.1rem solid #dfdfdf;
-  background-color: #fff;
+  border-bottom: 0.1rem solid var(--lightGray);
+  background-color: var(--white);
   .logo {
     width: 15.3rem;
     min-width: 15.3rem;
