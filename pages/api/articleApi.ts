@@ -55,7 +55,7 @@ const fetchInquiryById = async (id: string, cursor: string | null = null) => {
   }
 };
 
-const SetTokensToLocalStorage = async () => {
+const setTokensToLocalStorage = async () => {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/signIn`,
@@ -233,5 +233,5 @@ export {
   fetchInquiryById,
   postArticle,
   postArticleComment,
-  SetTokensToLocalStorage,
+  setTokensToLocalStorage,
 };

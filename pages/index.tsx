@@ -3,11 +3,11 @@ import Link from "next/link";
 import Footer from "@/components/common/Footer";
 import Image from "next/image";
 import { useEffect } from "react";
-import { SetTokensToLocalStorage } from "./api/articleApi";
+import { setTokensToLocalStorage } from "./api/articleApi";
 
 export default function Home() {
   useEffect(() => {
-    SetTokensToLocalStorage();
+    setTokensToLocalStorage();
   }, []);
   return (
     <>

@@ -11,7 +11,7 @@ const calculateGapTime = (date: string) => {
   const currentDate = new Date();
   const targetDate = new Date(date);
   const differenceInMinutes = Math.floor(
-    (+currentDate - +targetDate) / (1000 * 60)
+    (Number(currentDate) - Number(targetDate)) / (1000 * 60)
   );
   const differenceInHour = Math.floor(differenceInMinutes / 60);
   const differenceInDays = Math.floor(differenceInHour / 24);
