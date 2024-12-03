@@ -6,6 +6,7 @@ import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoginAndSetToken } from "./api/authApi";
 import { LoginInterface } from "@/types/auth";
+import { useRouter } from "next/router";
 
 const INITIAL_FORM_STATE: LoginInterface = {
   email: "",
@@ -13,6 +14,7 @@ const INITIAL_FORM_STATE: LoginInterface = {
 };
 
 function Login() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -26,7 +28,8 @@ function Login() {
     email,
     password,
   }) => {
-    console.log(email, password);
+    await LoginAndSetToken({ email, password });
+    router.push("/");
   };
 
   return (

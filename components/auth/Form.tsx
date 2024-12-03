@@ -1,7 +1,6 @@
-import { AuthFormState } from "@/types/authForm";
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, PropsWithChildren, ReactNode } from "react";
+import { PropsWithChildren, ReactNode } from "react";
 
 type FormType = "login" | "signup";
 
