@@ -55,39 +55,6 @@ const fetchInquiryById = async (id: string, cursor: string | null = null) => {
   }
 };
 
-const setTokensToLocalStorage = async () => {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/signIn`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: process.env.NEXT_PUBLIC_USER_EMAIL,
-          password: process.env.NEXT_PUBLIC_USER_PASSWORD,
-        }),
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("로그인 실패: 서버에서 인증 정보를 확인하세요.");
-    }
-
-    const { accessToken, refreshToken } = await response.json();
-
-    // localStorage에 토큰 저장
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
-
-    console.log("토큰이 성공적으로 설정되었습니다.");
-  } catch (error) {
-    console.error("초기 로그인 요청 실패:", error);
-    throw error;
-  }
-};
-
 const retryFetch = async (
   url: string,
   options: RequestInit
@@ -233,5 +200,4 @@ export {
   fetchInquiryById,
   postArticle,
   postArticleComment,
-  setTokensToLocalStorage,
 };

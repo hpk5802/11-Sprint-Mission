@@ -1,21 +1,12 @@
 import usePasswordVisibility from "@/hooks/usePassWordVisivility";
-import validateField from "@/hooks/validateFied";
-import { AuthFormAction, AuthInputState } from "@/types/authForm";
-import { ChangeEvent, Dispatch, FocusEvent } from "react";
-import useInputHandler from "../../hooks/useInputHandler";
-import clsx from "clsx";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 interface PasswordInputInterface {
-  state: AuthInputState;
-  handleValue: Dispatch<AuthFormAction>;
+  register: UseFormRegisterReturn;
+  errorMessage?: string;
 }
 
-function PassWordInput({ state, handleValue }: PasswordInputInterface) {
-  const { value, isValid, errorMessage, hasFocused } = state;
-  const { handleChange, handleBlur } = useInputHandler({
-    field: "password",
-    handleValue,
-  });
+function PassWordInput({ register, errorMessage }: PasswordInputInterface) {
   const { inputType, toggleVisibility } = usePasswordVisibility();
 
   return (
@@ -24,15 +15,11 @@ function PassWordInput({ state, handleValue }: PasswordInputInterface) {
       <input
         type={inputType}
         id='input_password'
-        className={clsx("pw", !hasFocused && "not-focused")}
-        value={value}
+        className='pw'
         placeholder='비밀번호를 입력해주세요'
-        onChange={handleChange}
-        onBlur={handleBlur}
-        data-valid={isValid}
-        required
+        {...register}
       />
-      <span className='msg-error'>{errorMessage}</span>
+      {errorMessage && <span className='msg-error'>{errorMessage}</span>}
       <button
         type='button'
         className='btn-toggle'

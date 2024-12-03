@@ -3,43 +3,38 @@ import Form from "@/components/auth/Form";
 import NickNameInput from "@/components/auth/NickNameInput";
 import PassWordInput from "@/components/auth/PassWordInput";
 import PassWordInputConfirm from "@/components/auth/PassWordInputConfirm";
-import useInputReducer from "@/reducers/useInputReducer";
-import { AuthFormState } from "@/types/authForm";
+import { SignupInterface } from "@/types/auth";
 import Image from "next/image";
 import Link from "next/link";
-import { useReducer } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-const INITIAL_FORM_STATE: AuthFormState = {
-  email: {
-    value: "",
-    isValid: false,
-    errorMessage: "",
-    hasFocused: false,
-  },
-  nickname: {
-    value: "",
-    isValid: false,
-    errorMessage: "",
-    hasFocused: false,
-  },
-  password: {
-    value: "",
-    isValid: false,
-    errorMessage: "",
-    hasFocused: false,
-  },
-  passwordConfirm: {
-    value: "",
-    isValid: false,
-    errorMessage: "",
-    hasFocused: false,
-  },
-  isFormValid: false,
+const INITIAL_FORM_STATE: SignupInterface = {
+  email: "",
+  nickname: "",
+  password: "",
+  passwordConfirm: "",
 };
 
 function Signup() {
-  const [state, dispatch] = useReducer(useInputReducer, INITIAL_FORM_STATE);
-  const { email, nickname, password, passwordConfirm, isFormValid } = state;
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isValid },
+  } = useForm<SignupInterface>({
+    mode: "onBlur",
+    defaultValues: INITIAL_FORM_STATE,
+  });
+
+  const onSubmit: SubmitHandler<SignupInterface> = ({
+    email,
+    nickname,
+    password,
+    passwordConfirm,
+  }) => {
+    console.log(email, nickname, password, passwordConfirm);
+  };
+
   return (
     <div className='container'>
       <h1 className='logo'>
@@ -52,17 +47,49 @@ function Signup() {
           />
         </Link>
       </h1>
-      <Form formType='signup' isValid={isFormValid}>
-        <EmailInput state={email} handleValue={dispatch} />
-        {nickname && <NickNameInput state={nickname} handleValue={dispatch} />}
-        <PassWordInput state={password} handleValue={dispatch} />
-        {passwordConfirm && (
-          <PassWordInputConfirm
-            state={passwordConfirm}
-            password={password.value}
-            handleValue={dispatch}
-          />
-        )}
+      <Form
+        formType='signup'
+        isValid={isValid}
+        handleSubmit={handleSubmit(onSubmit)}
+      >
+        <EmailInput
+          register={register("email", {
+            required: "이메일을 입력해주세요.",
+            pattern: {
+              value: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/,
+              message: "잘못된 이메일입니다.",
+            },
+          })}
+          errorMessage={errors.email?.message}
+        />
+        <NickNameInput
+          register={register("nickname", {
+            required: "닉네임을 입력해주세요.",
+            minLength: {
+              value: 1,
+              message: "닉네임을 최소 1글자 입력해주세요.",
+            },
+          })}
+          errorMessage={errors.nickname?.message}
+        />
+        <PassWordInput
+          register={register("password", {
+            required: "비밀번호를 입력해주세요.",
+            minLength: {
+              value: 8,
+              message: "비밀번호를 8자 이상 입력해주세요.",
+            },
+          })}
+          errorMessage={errors.password?.message}
+        />
+        <PassWordInputConfirm
+          register={register("passwordConfirm", {
+            required: "비밀번호를 입력해주세요.",
+            validate: (value) =>
+              value === watch("password") || "비밀번호가 일치하지 않습니다.",
+          })}
+          errorMessage={errors.passwordConfirm?.message}
+        />
       </Form>
     </div>
   );

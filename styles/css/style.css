@@ -1954,7 +1954,6 @@ footer .footer-wrap .sns a img {
   height: 100%;
 }
 .container form .input-area .msg-error {
-  display: none;
   margin: 0.8rem 0 0 1.6rem;
   font-size: 1.4rem;
   font-weight: var(--semiBold);
