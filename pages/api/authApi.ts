@@ -1,6 +1,6 @@
-import { LoginInterface } from "@/types/auth";
+import { LoginInterface, SignupInterface } from "@/types/auth";
 
-const LoginAndSetToken = async ({ email, password }: LoginInterface) => {
+const loginAndSetToken = async ({ email, password }: LoginInterface) => {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/signIn`,
@@ -33,4 +33,33 @@ const LoginAndSetToken = async ({ email, password }: LoginInterface) => {
   }
 };
 
-export { LoginAndSetToken };
+const signUp = async ({ email, nickname, password }: SignupInterface) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/signUp`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          nickname,
+          password,
+          passwordConfirmation: password,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      console.log(response.statusText);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("초기 로그인 요청 실패:", error);
+    throw error;
+  }
+};
+
+export { loginAndSetToken, signUp };

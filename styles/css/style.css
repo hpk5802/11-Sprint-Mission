@@ -2028,6 +2028,12 @@ footer .footer-wrap .sns a img {
   color: var(--primary100);
   text-decoration: underline;
 }
+.container .res-message {
+  margin-top: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: var(--bold);
+  color: var(--error);
+}
 
 /* BreakPoint Mobile */
 @media (max-width: 767px) {

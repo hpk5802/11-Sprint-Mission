@@ -7,7 +7,7 @@ interface SignupInterface {
   email: string;
   nickname: string;
   password: string;
-  passwordConfirm: string;
+  passwordConfirm?: string;
 }
 
 export type { LoginInterface, SignupInterface };

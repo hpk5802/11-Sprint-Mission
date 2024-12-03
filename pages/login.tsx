@@ -4,7 +4,7 @@ import PassWordInput from "@/components/auth/PassWordInput";
 import Image from "next/image";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { LoginAndSetToken } from "./api/authApi";
+import { loginAndSetToken } from "./api/authApi";
 import { LoginInterface } from "@/types/auth";
 import { useRouter } from "next/router";
 
@@ -28,7 +28,7 @@ function Login() {
     email,
     password,
   }) => {
-    await LoginAndSetToken({ email, password });
+    await loginAndSetToken({ email, password });
     router.push("/");
   };
 

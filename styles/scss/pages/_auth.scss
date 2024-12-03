@@ -143,6 +143,12 @@
       }
     }
   }
+  .res-message {
+    margin-top: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: var(--bold);
+    color: var(--error);
+  }
 }
 
 /* BreakPoint Mobile */

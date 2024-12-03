@@ -7,6 +7,9 @@ import { SignupInterface } from "@/types/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { signUp } from "./api/authApi";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 const INITIAL_FORM_STATE: SignupInterface = {
   email: "",
@@ -16,6 +19,7 @@ const INITIAL_FORM_STATE: SignupInterface = {
 };
 
 function Signup() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -25,14 +29,17 @@ function Signup() {
     mode: "onBlur",
     defaultValues: INITIAL_FORM_STATE,
   });
+  const [error, setError] = useState("");
 
-  const onSubmit: SubmitHandler<SignupInterface> = ({
+  const onSubmit: SubmitHandler<SignupInterface> = async ({
     email,
     nickname,
     password,
-    passwordConfirm,
   }) => {
-    console.log(email, nickname, password, passwordConfirm);
+    const res = await signUp({ email, nickname, password });
+
+    if (res.message) setError(res.message);
+    else router.push("/login");
   };
 
   return (
@@ -56,7 +63,7 @@ function Signup() {
           register={register("email", {
             required: "이메일을 입력해주세요.",
             pattern: {
-              value: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/,
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
               message: "잘못된 이메일입니다.",
             },
           })}
@@ -91,6 +98,7 @@ function Signup() {
           errorMessage={errors.passwordConfirm?.message}
         />
       </Form>
+      {error && <div className='res-message'>{error}</div>}
     </div>
   );
 }
