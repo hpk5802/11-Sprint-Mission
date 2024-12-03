@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { signUp } from "./api/authApi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 const INITIAL_FORM_STATE: SignupInterface = {
@@ -29,6 +29,7 @@ function Signup() {
     mode: "onBlur",
     defaultValues: INITIAL_FORM_STATE,
   });
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
   const onSubmit: SubmitHandler<SignupInterface> = async ({
@@ -41,6 +42,13 @@ function Signup() {
     if (res.message) setError(res.message);
     else router.push("/login");
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) router.push("/");
+    else setIsLoading(false);
+  }, [router]);
+
+  if (isLoading) return null;
 
   return (
     <div className='container'>

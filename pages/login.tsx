@@ -7,6 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { loginAndSetToken } from "./api/authApi";
 import { LoginInterface } from "@/types/auth";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const INITIAL_FORM_STATE: LoginInterface = {
   email: "",
@@ -23,6 +24,7 @@ function Login() {
     mode: "onBlur",
     defaultValues: INITIAL_FORM_STATE,
   });
+  const [isLoading, setIsLoading] = useState(true);
 
   const onSubmit: SubmitHandler<LoginInterface> = async ({
     email,
@@ -31,6 +33,13 @@ function Login() {
     await loginAndSetToken({ email, password });
     router.push("/");
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) router.push("/");
+    else setIsLoading(false);
+  }, [router]);
+
+  if (isLoading) return null;
 
   return (
     <div className='container'>
@@ -50,7 +59,13 @@ function Login() {
         handleSubmit={handleSubmit(onSubmit)}
       >
         <EmailInput
-          register={register("email", { required: "이메일을 입력해주세요." })}
+          register={register("email", {
+            required: "이메일을 입력해주세요.",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "잘못된 이메일입니다.",
+            },
+          })}
           errorMessage={errors.email?.message}
         />
         <PassWordInput
