@@ -14,6 +14,16 @@ const nextConfig = {
         pathname: "/**",
       },
       {
+        protocol: "https",
+        hostname: "**.net",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "**.co",
+        pathname: "/**",
+      },
+      {
         protocol: "http",
         hostname: "**.co.kr",
         pathname: "/**",
@@ -21,6 +31,16 @@ const nextConfig = {
       {
         protocol: "http",
         hostname: "**.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "**.net",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "**.co",
         pathname: "/**",
       },
       {
