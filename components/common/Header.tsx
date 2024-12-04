@@ -2,22 +2,30 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import ProfileIcon from "../Icons/ProfileIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const getToken = () => {
-  if (typeof window === "undefined") {
-    // 서버 환경
-    return null;
-  }
-  // 브라우저 환경
-  return localStorage.getItem("accessToken");
-};
+// const getToken = () => {
+//   if (typeof window === "undefined") {
+//     // 서버 환경
+//     return null;
+//   }
+//   // 브라우저 환경
+//   return localStorage.getItem("accessToken");
+// };
 
 function Header() {
   const router = useRouter();
   const { pathname } = router;
-  const hasToken = getToken();
+  const [hasToken, setHasToken] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null;
+    setHasToken(!!token);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("accessToken");

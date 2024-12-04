@@ -145,7 +145,7 @@ function Detail() {
   }, [handleObserver]);
   return (
     <>
-      <Header isLogin />
+      <Header />
       <div className='page-detail'>
         <DetailProduct {...product} />
         <div className='product-inquiry-wrap'>

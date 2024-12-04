@@ -5,7 +5,7 @@ import Header from "@/components/common/Header";
 function index() {
   return (
     <>
-      <Header isLogin={true} />
+      <Header />
       <main className='page-boards'>
         <BestArticleList />
         <ArticleList />

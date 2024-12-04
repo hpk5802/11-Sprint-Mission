@@ -120,7 +120,7 @@ function Detail() {
   }, [handleObserver]);
   return (
     <>
-      <Header isLogin />
+      <Header />
       <div className='page-detail'>
         <DetailArticle {...article} />
         <div className='article-inquiry-wrap'>

@@ -5,7 +5,7 @@ import ProductList from "@/components/items/ProductList";
 function Items() {
   return (
     <>
-      <Header isLogin={true} />
+      <Header />
       <main className='page-items'>
         <BestProductList />
         <ProductList />
