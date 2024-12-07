@@ -4,15 +4,6 @@ import { useRouter } from "next/router";
 import ProfileIcon from "../Icons/ProfileIcon";
 import { useEffect, useState } from "react";
 
-// const getToken = () => {
-//   if (typeof window === "undefined") {
-//     // 서버 환경
-//     return null;
-//   }
-//   // 브라우저 환경
-//   return localStorage.getItem("accessToken");
-// };
-
 function Header() {
   const router = useRouter();
   const { pathname } = router;
@@ -30,6 +21,7 @@ function Header() {
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
+    setHasToken(false);
   };
 
   return (
