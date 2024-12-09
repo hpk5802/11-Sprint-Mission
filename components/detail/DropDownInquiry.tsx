@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
+import ToggleIcon from "../Icons/ToggleIcon";
 
 interface DropDownInquiryProps {
   setIsEditting: (value: boolean) => void;
@@ -23,11 +24,7 @@ function DropDownInquiry({ setIsEditting }: DropDownInquiryProps) {
         className='btn-open-menu'
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        <svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-          <circle cx='12.5' cy='6.5' r='1.5' fill='#9CA3AF' />
-          <circle cx='12.5' cy='11.5' r='1.5' fill='#9CA3AF' />
-          <circle cx='12.5' cy='16.5' r='1.5' fill='#9CA3AF' />
-        </svg>
+        <ToggleIcon />
       </button>
       {isOpen && (
         <div className='menus'>

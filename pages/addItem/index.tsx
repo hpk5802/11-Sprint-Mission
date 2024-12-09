@@ -32,7 +32,7 @@ function AddItem() {
   }, [userInput]);
   return (
     <>
-      <Header isLogin />
+      <Header />
       <div className='form-wrap'>
         <form onSubmit={handleSubmit}>
           <div className='title-wrap'>

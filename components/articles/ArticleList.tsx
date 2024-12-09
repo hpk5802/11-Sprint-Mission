@@ -41,7 +41,7 @@ function ArticleList() {
       }).then(({ list, totalCount }) => {
         // 서버의 더 요청할 데이터가 없으면 스크롤 막기 위해 분기처리
         const pageLimit = Math.ceil(totalCount / productsPerPage);
-        if (pageLimit <= +page) setHasMoreData(false);
+        if (pageLimit <= Number(page)) setHasMoreData(false);
         setArticles((prev) => (page === "1" ? list : [...prev, ...list]));
         setIsInitial(false);
       });

@@ -29,7 +29,7 @@ function AddBoard() {
   };
   return (
     <>
-      <Header isLogin />
+      <Header />
       <div className='form-wrap'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className='title-wrap'>

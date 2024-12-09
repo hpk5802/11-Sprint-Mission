@@ -1,31 +1,45 @@
 import EmailInput from "@/components/auth/EmailInput";
 import Form from "@/components/auth/Form";
 import PassWordInput from "@/components/auth/PassWordInput";
-import useInputReducer from "@/reducers/useInputReducer";
-import { AuthFormState } from "@/types/authForm";
 import Image from "next/image";
 import Link from "next/link";
-import { useReducer } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { loginAndSetToken } from "./api/authApi";
+import { LoginInterface } from "@/types/auth";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
-const INITIAL_FORM_STATE: AuthFormState = {
-  email: {
-    value: "",
-    isValid: false,
-    errorMessage: "",
-    hasFocused: false,
-  },
-  password: {
-    value: "",
-    isValid: false,
-    errorMessage: "",
-    hasFocused: false,
-  },
-  isFormValid: false,
+const INITIAL_FORM_STATE: LoginInterface = {
+  email: "",
+  password: "",
 };
 
 function Login() {
-  const [state, dispatch] = useReducer(useInputReducer, INITIAL_FORM_STATE);
-  const { email, password, isFormValid } = state;
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<LoginInterface>({
+    mode: "onBlur",
+    defaultValues: INITIAL_FORM_STATE,
+  });
+  const [isLoading, setIsLoading] = useState(true);
+
+  const onSubmit: SubmitHandler<LoginInterface> = async ({
+    email,
+    password,
+  }) => {
+    await loginAndSetToken({ email, password });
+    router.push("/");
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) router.push("/");
+    else setIsLoading(false);
+  }, [router]);
+
+  if (isLoading) return null;
 
   return (
     <div className='container'>
@@ -39,9 +53,27 @@ function Login() {
           />
         </Link>
       </h1>
-      <Form formType='login' isValid={isFormValid}>
-        <EmailInput state={email} handleValue={dispatch} />
-        <PassWordInput state={password} handleValue={dispatch} />
+      <Form
+        formType='login'
+        isValid={isValid}
+        handleSubmit={handleSubmit(onSubmit)}
+      >
+        <EmailInput
+          register={register("email", {
+            required: "이메일을 입력해주세요.",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "잘못된 이메일입니다.",
+            },
+          })}
+          errorMessage={errors.email?.message}
+        />
+        <PassWordInput
+          register={register("password", {
+            required: "비밀번호를 입력해주세요.",
+          })}
+          errorMessage={errors.password?.message}
+        />
       </Form>
     </div>
   );
