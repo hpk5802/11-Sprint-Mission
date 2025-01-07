@@ -167,13 +167,13 @@ const postProduct = async ({ content }: { content: PostProductInterface }) => {
 
 const postComment = async (id: string, { content }: { content: string }) => {
   try {
-    const response = await fetch(
+    const response = await retryFetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/products/${id}/comments`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // Authorization: 'Jwt Token'
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
         body: JSON.stringify({ content }),
       }
