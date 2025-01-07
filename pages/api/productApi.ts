@@ -208,6 +208,26 @@ const updateComment = async (id: string, data: updateCommentInterface) => {
   }
 };
 
+const deleteComment = async (id: string) => {
+  try {
+    const response = await retryFetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("댓글 삭제 실패");
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
 export {
   fetchProducts,
   fetchProductById,
@@ -215,4 +235,5 @@ export {
   postProduct,
   postComment,
   updateComment,
+  deleteComment,
 };
