@@ -9,6 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
+import PlusIcon from "../Icons/PlusIcon";
 
 interface ImgFileInputProps {
   images: string[];
@@ -95,7 +96,7 @@ function ImgFileInput({
           onClick={handleClick}
         >
           <span>
-            <Image fill src='/icons/ic_plus.svg' alt='이미지 등록' />
+            <PlusIcon width='48' height='48' />
           </span>
           이미지 등록
         </button>

@@ -1,14 +1,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import ProfileIcon from "../Icons/ProfileIcon";
+import { useEffect, useState } from "react";
 
-interface HeaderProps {
-  isLogin?: boolean;
-}
-
-function Header({ isLogin = false }: HeaderProps) {
+function Header() {
   const router = useRouter();
   const { pathname } = router;
+  const [hasToken, setHasToken] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null;
+    setHasToken(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    setHasToken(false);
+  };
+
   return (
     <header>
       <h1 className='logo'>
@@ -21,7 +36,7 @@ function Header({ isLogin = false }: HeaderProps) {
           </div>
         </Link>
       </h1>
-      {isLogin ? (
+      {hasToken ? (
         <div className='login-area'>
           <div className='content-link'>
             <Link
@@ -43,13 +58,21 @@ function Header({ isLogin = false }: HeaderProps) {
               중고마켓
             </Link>
           </div>
-          <Link
-            href='/profile'
-            className='link-profile'
-            title='프로필 페이지 이동'
+          <button
+            className='btn-profile'
+            onClick={() => setIsOpen((prev) => !prev)}
           >
-            <Image fill src='/icons/ic_user.svg' alt='프로필 이미지' />
-          </Link>
+            <ProfileIcon />
+            {isOpen && (
+              <button
+                type='button'
+                className='btn-logout'
+                onClick={handleLogout}
+              >
+                로그아웃
+              </button>
+            )}
+          </button>
         </div>
       ) : (
         <Link href='/login' className='link-login' title='로그인 페이지 이동'>

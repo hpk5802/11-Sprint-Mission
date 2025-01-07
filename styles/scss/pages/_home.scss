@@ -16,7 +16,7 @@
       align-items: center;
       justify-content: center;
       border-radius: 1.2rem;
-      background-color: #fcfcfc;
+      background-color: var(--milkWhite);
       .img-home {
         position: relative;
         max-width: 74.6rem;
@@ -36,7 +36,7 @@
     &-bg {
       align-items: end;
       height: 54rem;
-      background-color: #cfe5ff;
+      background-color: var(--hawkesBlue);
       .section-content {
         display: flex;
         justify-content: space-between;
@@ -76,7 +76,7 @@
         justify-content: center;
         width: 98.8rem;
         border-radius: 1.2rem;
-        background-color: #fcfcfc;
+        background-color: var(--milkWhite);
         .img-pc {
           position: relative;
           display: block;

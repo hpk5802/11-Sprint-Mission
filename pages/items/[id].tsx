@@ -11,7 +11,7 @@ import DetailInquiry from "@/components/detail/DetailInquiry";
 import InquiryEmpty from "@/components/detail/InquiryEmpty";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Image from "next/image";
+import BackIcon from "@/components/Icons/BackIcon";
 
 interface InputState {
   name: string;
@@ -145,7 +145,7 @@ function Detail() {
   }, [handleObserver]);
   return (
     <>
-      <Header isLogin />
+      <Header />
       <div className='page-detail'>
         <DetailProduct {...product} />
         <div className='product-inquiry-wrap'>
@@ -164,7 +164,7 @@ function Detail() {
           {list.length > 0 ? (
             list.map(({ id, content, writer, updatedAt }) => (
               <DetailInquiry
-                key={`comment_${id}`}
+                key={id}
                 id={id.toString()}
                 content={content}
                 writer={writer}
@@ -179,7 +179,7 @@ function Detail() {
         <Link href='/items' className='navigate-to-items'>
           목록으로 돌아가기
           <span>
-            <Image fill src='/icons/ic_back.svg' alt='목록으로 돌아가기' />
+            <BackIcon />
           </span>
         </Link>
       </div>

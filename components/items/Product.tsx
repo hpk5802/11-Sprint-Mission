@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { formatPriceToKRW } from "@/utils/formatPrice";
-import Image from "next/image";
 import { ProductInterface } from "@/types/product";
 import ImageProduct from "./ImageProduct";
+import HeartIcon from "../Icons/HeartIcon";
 
 function Product({ product }: { product: ProductInterface }) {
   const { id, name, price, favoriteCount, images } = product;
@@ -17,7 +17,7 @@ function Product({ product }: { product: ProductInterface }) {
           <div className='product-price'>{formattedPrice}</div>
           <div className='product-favorite'>
             <div>
-              <Image fill src='/icons/ic_heart.svg' alt='하트' />
+              <HeartIcon />
             </div>
             <span>{favoriteCount}</span>
           </div>

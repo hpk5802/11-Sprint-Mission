@@ -20,10 +20,10 @@ const sortOptions = [
 ];
 
 function ArticleList() {
-  const showPerPage = useWindowSize().page;
+  const { page } = useWindowSize();
   const [articles, setArticles] = useState<ArticleInterface[]>([]);
   const [productsPerPage, setProductsPerPage] = useState<number | null>(null); // 반응형에 따라 보여줄 Product 수를 할당할 state
-  const [order, setOrder] = useState("recent"); // 데이터 정렬을 위한 queryParam [orderBy]
+  const [order, setOrder] = useState(sortOptions[0].value); // 데이터 정렬을 위한 queryParam [orderBy]
   const [keyword, setKeyword] = useState("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isInitial, setIsInitial] = useState(true); // Observer API와 Initial Load의 충돌 방지를 위한 state
@@ -41,7 +41,7 @@ function ArticleList() {
       }).then(({ list, totalCount }) => {
         // 서버의 더 요청할 데이터가 없으면 스크롤 막기 위해 분기처리
         const pageLimit = Math.ceil(totalCount / productsPerPage);
-        if (pageLimit <= +page) setHasMoreData(false);
+        if (pageLimit <= Number(page)) setHasMoreData(false);
         setArticles((prev) => (page === "1" ? list : [...prev, ...list]));
         setIsInitial(false);
       });
@@ -64,7 +64,11 @@ function ArticleList() {
 
   useEffect(() => {
     // initail 데이터 로드
-    loadArticles();
+    try {
+      loadArticles();
+    } catch {
+      throw new Error("데이터 불러오기 실패");
+    }
   }, [loadArticles]);
 
   // 디바이스 분기처리 - page를 1로 초기화해 서버의 page=1 부터 데이터 새로 로드
@@ -72,8 +76,8 @@ function ArticleList() {
     setHasMoreData(true);
     setIsInitial(true);
     setCurrentPage(1);
-    setProductsPerPage(showPerPage);
-  }, [showPerPage]);
+    setProductsPerPage(page);
+  }, [page]);
 
   useEffect(() => {
     setHasMoreData(true);
@@ -98,7 +102,7 @@ function ArticleList() {
     <section id='section_all'>
       <h2 className='article-title'>게시글</h2>
       <PrimaryButton name='btn-register'>
-        <Link href='/addArticle'>글쓰기</Link>
+        <Link href='/addboard'>글쓰기</Link>
       </PrimaryButton>
       <div className='filter-area'>
         <Search setKeyword={setKeyword} />

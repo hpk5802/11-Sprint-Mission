@@ -3,6 +3,7 @@ import DropDownInquiry from "./DropDownInquiry";
 import { updateComment, updateCommentInterface } from "@/pages/api/productApi";
 import { calculateGapTime } from "@/utils/formatDate";
 import Image from "next/image";
+import ProfileIcon from "../Icons/ProfileIcon";
 
 interface DetailInquiryProps {
   id: string;
@@ -56,7 +57,11 @@ function DetailInquiry({ id, content, writer, updatedAt }: DetailInquiryProps) {
       <div className='inquiry-footer'>
         <div className='user-area'>
           <div className='writer-icon'>
-            <Image fill src='/icons/ic_user.svg' alt={writer.nickname} />
+            {writer.image ? (
+              <Image fill src={writer.image} alt={writer.nickname} />
+            ) : (
+              <ProfileIcon />
+            )}
           </div>
           <div>
             <div className='writer-name'>{writer.nickname}</div>

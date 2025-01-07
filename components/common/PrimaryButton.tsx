@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { PropsWithChildren, ReactNode, useState } from "react";
 
 interface PrimaryButtonProps {
@@ -19,7 +20,7 @@ function PrimaryButton({
   return (
     <button
       type={type}
-      className={["btn-primary", name, isHover ? "hover" : null].join(" ")}
+      className={clsx("btn-primary", name, isHover && "hover")}
       onClick={onClick}
       onMouseOver={() => setIsHover(true)}
       onMouseOut={() => setIsHover(false)}

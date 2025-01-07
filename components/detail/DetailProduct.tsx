@@ -1,7 +1,8 @@
 import { formatPriceToKRW } from "@/utils/formatPrice";
 import { formatDate } from "@/utils/formatDate";
-import Image from "next/image";
 import ImageProduct from "../items/ImageProduct";
+import ProfileIcon from "../Icons/ProfileIcon";
+import HeartIcon from "../Icons/HeartIcon";
 
 interface DetailProductProps {
   name: string;
@@ -49,7 +50,7 @@ function DetailProduct({
         <div className='detail-footer'>
           <div className='owner-wrap'>
             <div className='owner-icon'>
-              <Image fill src='/icons/ic_user.svg' alt={ownerNickname} />
+              <ProfileIcon />
             </div>
             <div className='owner-desc'>
               <div className='owner-name'>{ownerNickname}</div>
@@ -58,11 +59,7 @@ function DetailProduct({
           </div>
           <button className='btn-favorite'>
             <div>
-              <Image
-                fill
-                src={`/icons/ic_favorite${isFavorite ? "_active" : ""}.svg`}
-                alt='favorite'
-              />
+              <HeartIcon isFavorite={isFavorite} />
             </div>
             <span>{favoriteCount}</span>
           </button>

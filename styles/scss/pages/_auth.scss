@@ -83,7 +83,6 @@
         }
       }
       .msg-error {
-        display: none;
         margin: 0.8rem 0 0 1.6rem;
         font-size: 1.4rem;
         font-weight: var(--semiBold);
@@ -99,7 +98,7 @@
       background-color: var(--primary100);
       font-size: 2rem;
       font-weight: var(--semiBold);
-      color: #fff;
+      color: var(--white);
       /* 폼 양식 input 영역 미완성인 경우 */
       &:disabled {
         background-color: var(--gray400);
@@ -112,7 +111,7 @@
       justify-content: space-between;
       padding: 1.6rem 2.3rem;
       border-radius: 0.8rem;
-      background-color: #e6f2ff;
+      background-color: var(--pattensBlue);
       span {
         font-size: 1.6rem;
         font-weight: var(--medium);
@@ -143,6 +142,12 @@
         text-decoration: underline;
       }
     }
+  }
+  .res-message {
+    margin-top: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: var(--bold);
+    color: var(--error);
   }
 }
 

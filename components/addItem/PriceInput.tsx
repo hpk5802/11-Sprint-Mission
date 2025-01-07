@@ -22,7 +22,7 @@ function PriceInput({
     const priceValue = formatToPrice(target.value);
     const regExp = /^\d*$/; // 숫자만 입력 가능하게 하기 위한 정규식
     if (regExp.test(priceValue)) {
-      dispatch({ type: "SET_PRICE", payload: +priceValue });
+      dispatch({ type: "SET_PRICE", payload: Number(priceValue) });
     }
   };
   return (

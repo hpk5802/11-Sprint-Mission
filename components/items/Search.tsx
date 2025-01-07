@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ChangeEvent } from "react";
+import SearchIcon from "../Icons/SearchIcon";
 
 interface SearchProps {
   setKeyword: (value: string) => void;
@@ -11,11 +12,7 @@ function Search({ setKeyword }: SearchProps) {
   return (
     <div className='input-area'>
       <div>
-        <Image
-          fill
-          src='/icons/ic_search.svg'
-          alt='검색할 상품을 입력해주세요'
-        />
+        <SearchIcon />
       </div>
       <input
         type='text'

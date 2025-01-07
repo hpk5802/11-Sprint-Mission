@@ -9,8 +9,8 @@ header {
   height: 7rem;
   /* 로고 & 로그인 버튼 여백 200px 유지하기 위해 rem 사용 X */
   padding: 0.8rem 200px;
-  border-bottom: 0.1rem solid #dfdfdf;
-  background-color: #fff;
+  border-bottom: 0.1rem solid var(--lightGray);
+  background-color: var(--white);
   .logo {
     width: 15.3rem;
     min-width: 15.3rem;
@@ -45,10 +45,25 @@ header {
         }
       }
     }
-    .link-profile {
+    .btn-profile {
       position: relative;
       width: 4rem;
       height: 4rem;
+      border: 0;
+      background-color: transparent;
+      .btn-logout {
+        position: absolute;
+        bottom: -6rem;
+        right: 0;
+        width: 13.9rem;
+        padding: 1.6rem 0;
+        border: 0.1rem solid var(--gray300);
+        border-radius: 0.8rem;
+        background-color: var(--white);
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+        color: var(--gray500);
+      }
     }
   }
   .link-login {

@@ -11,7 +11,7 @@ const calculateGapTime = (date: string) => {
   const currentDate = new Date();
   const targetDate = new Date(date);
   const differenceInMinutes = Math.floor(
-    (+currentDate - +targetDate) / (1000 * 60)
+    (Number(currentDate) - Number(targetDate)) / (1000 * 60)
   );
   const differenceInHour = Math.floor(differenceInMinutes / 60);
   const differenceInDays = Math.floor(differenceInHour / 24);
@@ -21,7 +21,9 @@ const calculateGapTime = (date: string) => {
   } else if (differenceInHour > 0) {
     return differenceInHour + "시간 전";
   } else {
-    return differenceInMinutes + "분 전";
+    return differenceInMinutes > 0
+      ? differenceInMinutes + "분 전"
+      : 0 + "분 전";
   }
 };
 
