@@ -11,6 +11,7 @@ interface DetailInquiryProps {
   writer: any;
   updatedAt: string;
   onUpdate: (id: string, updatedContent: string) => void;
+  onDelete: (id: string) => void;
 }
 
 function DetailInquiry({
@@ -19,6 +20,7 @@ function DetailInquiry({
   writer,
   updatedAt,
   onUpdate,
+  onDelete,
 }: DetailInquiryProps) {
   const [isEditing, setIsEditing] = useState(false); // 수정 상태를 할당할 state
   const [comment, setComment] = useState(content); // 문의하기 text를 할당할 state
@@ -44,7 +46,12 @@ function DetailInquiry({
 
   return (
     <div className='content-inquiry'>
-      {!isEditing && <DropDownInquiry setIsEditting={setIsEditing} />}
+      {!isEditing && (
+        <DropDownInquiry
+          setIsEditting={setIsEditing}
+          onDelete={() => onDelete(id)}
+        />
+      )}
       <div className='inquiry-comment'>
         {isEditing ? (
           <textarea

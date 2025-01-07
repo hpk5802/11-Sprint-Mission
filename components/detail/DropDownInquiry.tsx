@@ -1,12 +1,12 @@
-import Image from "next/image";
 import { useState } from "react";
 import ToggleIcon from "../Icons/ToggleIcon";
 
 interface DropDownInquiryProps {
   setIsEditting: (value: boolean) => void;
+  onDelete: () => void;
 }
 
-function DropDownInquiry({ setIsEditting }: DropDownInquiryProps) {
+function DropDownInquiry({ setIsEditting, onDelete }: DropDownInquiryProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleEdit = () => {
@@ -15,6 +15,7 @@ function DropDownInquiry({ setIsEditting }: DropDownInquiryProps) {
   };
 
   const handleDelete = () => {
+    onDelete();
     setIsOpen(false);
   };
   return (

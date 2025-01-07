@@ -1,6 +1,7 @@
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import Header from "@/components/common/Header";
 import {
+  deleteComment,
   fetchInquiryById,
   fetchProductById,
   postComment,
@@ -108,6 +109,15 @@ function Detail() {
     queryClient.invalidateQueries(["inquiries", productId]);
   };
 
+  const deleteCommentHandler = async (id: string) => {
+    try {
+      await deleteComment(id);
+      queryClient.invalidateQueries(["inquiries", productId]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   /**
    * 댓글 추가 핸들러
    * @param {*} e
@@ -181,6 +191,7 @@ function Detail() {
                   writer={writer}
                   updatedAt={updatedAt}
                   onUpdate={updateCommentHandler}
+                  onDelete={deleteCommentHandler}
                 />
               ))
             )
