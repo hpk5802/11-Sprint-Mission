@@ -24,6 +24,7 @@ function DetailInquiry({
 }: DetailInquiryProps) {
   const [isEditing, setIsEditing] = useState(false); // 수정 상태를 할당할 state
   const [comment, setComment] = useState(content); // 문의하기 text를 할당할 state
+  const userId = localStorage.getItem("userId");
 
   const handleCancelEdit = () => {
     setIsEditing(false);
@@ -46,7 +47,7 @@ function DetailInquiry({
 
   return (
     <div className='content-inquiry'>
-      {!isEditing && (
+      {!isEditing && String(writer.id) === userId && (
         <DropDownInquiry
           setIsEditting={setIsEditing}
           onDelete={() => onDelete(id)}
