@@ -188,15 +188,15 @@ const postComment = async (id: string, { content }: { content: string }) => {
 
 const updateComment = async (id: string, data: updateCommentInterface) => {
   try {
-    const response = await fetch(
+    const response = await retryFetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${id}`,
       {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          // Authorization: 'Jwt Token'
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
-        body: JSON.stringify({ data }),
+        body: JSON.stringify(data),
       }
     );
     if (!response.ok) {

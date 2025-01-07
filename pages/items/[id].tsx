@@ -104,6 +104,10 @@ function Detail() {
     },
   });
 
+  const updateCommentHandler = () => {
+    queryClient.invalidateQueries(["inquiries", productId]);
+  };
+
   /**
    * 댓글 추가 핸들러
    * @param {*} e
@@ -176,6 +180,7 @@ function Detail() {
                   content={content}
                   writer={writer}
                   updatedAt={updatedAt}
+                  onUpdate={updateCommentHandler}
                 />
               ))
             )
