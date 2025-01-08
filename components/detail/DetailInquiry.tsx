@@ -49,7 +49,7 @@ function DetailInquiry({
     <div className='content-inquiry'>
       {!isEditing && String(writer.id) === userId && (
         <DropDownInquiry
-          setIsEditting={setIsEditing}
+          onEdit={() => setIsEditing(true)}
           onDelete={() => onDelete(id)}
         />
       )}

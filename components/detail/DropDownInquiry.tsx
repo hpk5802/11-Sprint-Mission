@@ -2,16 +2,16 @@ import { useState } from "react";
 import ToggleIcon from "../Icons/ToggleIcon";
 
 interface DropDownInquiryProps {
-  setIsEditting: (value: boolean) => void;
   onDelete: () => void;
+  onEdit: () => void;
 }
 
-function DropDownInquiry({ setIsEditting, onDelete }: DropDownInquiryProps) {
+function DropDownInquiry({ onDelete, onEdit }: DropDownInquiryProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleEdit = () => {
     setIsOpen(false);
-    setIsEditting(true);
+    onEdit();
   };
 
   const handleDelete = () => {
