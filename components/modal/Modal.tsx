@@ -26,7 +26,7 @@ function Modal({
   return createPortal(
     <div className='modal'>
       <div className='modal-overlay' onClick={closeModal} />
-      <div className='modal-contianer'>{children}</div>
+      <div className='modal-container'>{children}</div>
     </div>,
     document.getElementById("modal-root") as Element
   );
