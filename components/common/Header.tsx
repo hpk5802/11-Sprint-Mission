@@ -23,6 +23,7 @@ function Header() {
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("userId");
     setHasToken(false);
+    router.push("/");
   };
 
   return (
