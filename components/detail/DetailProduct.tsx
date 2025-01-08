@@ -5,8 +5,10 @@ import ProfileIcon from "../Icons/ProfileIcon";
 import HeartIcon from "../Icons/HeartIcon";
 import DropDownInquiry from "./DropDownInquiry";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 interface DetailProductProps {
+  id: number;
   name: string;
   description: string;
   images: string[];
@@ -17,9 +19,11 @@ interface DetailProductProps {
   ownerNickname: string;
   updatedAt: string;
   isFavorite?: boolean;
+  onDelete: (id: string) => void;
 }
 
 function DetailProduct({
+  id,
   name,
   description,
   images,
@@ -30,7 +34,9 @@ function DetailProduct({
   ownerNickname,
   updatedAt,
   isFavorite,
+  onDelete,
 }: DetailProductProps) {
+  const router = useRouter();
   const [isEditing, setIsEditing] = useState(false); // 수정 상태를 할당할 state
   const userId = localStorage.getItem("userId");
 
@@ -39,7 +45,10 @@ function DetailProduct({
       {!isEditing && String(ownerId) === userId && (
         <DropDownInquiry
           setIsEditting={setIsEditing}
-          onDelete={() => console.log("delete")}
+          onDelete={() => {
+            onDelete(String(id));
+            router.push("/items");
+          }}
         />
       )}
       <ImageProduct images={images} name={name} />

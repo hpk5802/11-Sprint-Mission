@@ -165,6 +165,29 @@ const postProduct = async ({ content }: { content: PostProductInterface }) => {
   }
 };
 
+const deleteProduct = async (productId: string) => {
+  try {
+    const response = await retryFetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/products/${productId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("상품 삭제 실패");
+    }
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const postComment = async (id: string, { content }: { content: string }) => {
   try {
     const response = await retryFetch(
@@ -233,6 +256,7 @@ export {
   fetchProductById,
   fetchInquiryById,
   postProduct,
+  deleteProduct,
   postComment,
   updateComment,
   deleteComment,

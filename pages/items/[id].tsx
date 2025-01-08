@@ -2,6 +2,7 @@ import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import Header from "@/components/common/Header";
 import {
   deleteComment,
+  deleteProduct,
   fetchInquiryById,
   fetchProductById,
   postComment,
@@ -106,6 +107,21 @@ function Detail() {
     },
   });
 
+  const deleteProductHandler = async (id: string) => {
+    try {
+      const response = await deleteProduct(id);
+
+      if (response.ok) {
+        queryClient.invalidateQueries({
+          queryKey: ["products"],
+          exact: false, // 모든 "products"로 시작하는 쿼리를 무효화
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const updateCommentHandler = () => {
     queryClient.invalidateQueries({ queryKey: ["inquiries", productId] });
   };
@@ -166,7 +182,11 @@ function Detail() {
     <>
       <Header />
       <div className='page-detail'>
-        {productLoading ? <p>Loading...</p> : <DetailProduct {...product} />}
+        {productLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <DetailProduct {...product} onDelete={deleteProductHandler} />
+        )}
         <div className='product-inquiry-wrap'>
           <form onSubmit={handleSubmit}>
             <label htmlFor='input_inquiry'>문의하기</label>
