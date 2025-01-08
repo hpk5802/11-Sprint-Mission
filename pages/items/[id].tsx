@@ -84,7 +84,8 @@ function Detail() {
     isFetchingNextPage,
   } = useInfiniteQuery<CommentInterface>({
     queryKey: ["inquiries", productId],
-    queryFn: ({ pageParam = null }) => fetchInquiryById(productId!, pageParam),
+    queryFn: ({ pageParam }) =>
+      fetchInquiryById(productId!, pageParam as string),
     initialPageParam: null,
     getNextPageParam: (lastPage) => lastPage.nextCursor ?? null,
     enabled: !!productId,
@@ -97,7 +98,7 @@ function Detail() {
     onSuccess: () => {
       setNewComment("");
       if (productId) {
-        queryClient.invalidateQueries(["inquiries", productId]);
+        queryClient.invalidateQueries({ queryKey: ["inquiries", productId] });
       }
     },
     onError: (error) => {
@@ -106,13 +107,13 @@ function Detail() {
   });
 
   const updateCommentHandler = () => {
-    queryClient.invalidateQueries(["inquiries", productId]);
+    queryClient.invalidateQueries({ queryKey: ["inquiries", productId] });
   };
 
   const deleteCommentHandler = async (id: string) => {
     try {
       await deleteComment(id);
-      queryClient.invalidateQueries(["inquiries", productId]);
+      queryClient.invalidateQueries({ queryKey: ["inquiries", productId] });
     } catch (error) {
       console.error(error);
     }
