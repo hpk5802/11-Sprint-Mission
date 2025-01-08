@@ -3,6 +3,8 @@ import { formatDate } from "@/utils/formatDate";
 import ImageProduct from "../items/ImageProduct";
 import ProfileIcon from "../Icons/ProfileIcon";
 import HeartIcon from "../Icons/HeartIcon";
+import DropDownInquiry from "./DropDownInquiry";
+import { useState } from "react";
 
 interface DetailProductProps {
   name: string;
@@ -11,6 +13,7 @@ interface DetailProductProps {
   price: number;
   favoriteCount: number;
   tags: string[];
+  ownerId: number;
   ownerNickname: string;
   updatedAt: string;
   isFavorite?: boolean;
@@ -23,12 +26,22 @@ function DetailProduct({
   price,
   favoriteCount,
   tags,
+  ownerId,
   ownerNickname,
   updatedAt,
   isFavorite,
 }: DetailProductProps) {
+  const [isEditing, setIsEditing] = useState(false); // 수정 상태를 할당할 state
+  const userId = localStorage.getItem("userId");
+
   return (
     <div className='product-detail-contents'>
+      {!isEditing && String(ownerId) === userId && (
+        <DropDownInquiry
+          setIsEditting={setIsEditing}
+          onDelete={() => console.log("delete")}
+        />
+      )}
       <ImageProduct images={images} name={name} />
       <div className='desc-wrap'>
         <h2 className='detail-name'>{name}</h2>

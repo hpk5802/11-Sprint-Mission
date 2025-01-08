@@ -1017,13 +1017,20 @@ footer .footer-wrap .sns a img {
   margin: 2.4rem auto 0;
 }
 .page-detail .product-detail-contents {
+  position: relative;
   display: flex;
   gap: 1.6rem;
   margin-bottom: 4rem;
   padding-bottom: 4rem;
   border-bottom: 0.1rem solid var(--gray200);
 }
+.page-detail .product-detail-contents .menu {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 .page-detail .product-detail-contents .img-wrap {
+  flex-shrink: 0;
   position: relative;
   width: 48.6rem;
   height: 48.6rem;
@@ -1038,12 +1045,18 @@ footer .footer-wrap .sns a img {
   flex: 1;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  overflow: hidden;
 }
 .page-detail .product-detail-contents .desc-wrap .detail-name {
+  width: 100%;
+  padding-right: 30px;
   font-size: 2.4rem;
   font-weight: var(--semiBold);
   line-height: 3.2rem;
   color: var(--gray800);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .page-detail .product-detail-contents .desc-wrap .detail-price {
   margin-bottom: 2.4rem;
@@ -1079,6 +1092,9 @@ footer .footer-wrap .sns a img {
   gap: 0.8rem;
 }
 .page-detail .product-detail-contents .desc-wrap .detail-tag-wrap .detail-tags .detail-tag {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   padding: 0.5rem 1.6rem;
   border-radius: 2.6rem;
   background-color: var(--gray100);
