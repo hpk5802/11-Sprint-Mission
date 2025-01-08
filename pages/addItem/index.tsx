@@ -12,6 +12,7 @@ import Description from "@/components/addItem/Description";
 import PriceInput from "@/components/addItem/PriceInput";
 import TagInput from "@/components/addItem/TagInput";
 import { useRouter } from "next/router";
+import queryClient from "@/lib/queryClient";
 
 function AddItem() {
   const router = useRouter();
@@ -23,6 +24,7 @@ function AddItem() {
 
     if (isFormValid) {
       const { id } = await postProduct({ content: userInput });
+      queryClient.invalidateQueries({ queryKey: ["products"], exact: false });
       router.push(`/items/${id}`);
     }
   };
