@@ -25,7 +25,7 @@ function ImgFileInput({
   dispatch,
 }: PropsWithChildren<ImgFileInputProps>) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
+  const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(images[0]);
   const [showWarn, setShowWarn] = useState(false); // 이미지를 1개 이상 추가하려고 할 때를 위한 state
   const isFilled = images.length > 0;
 

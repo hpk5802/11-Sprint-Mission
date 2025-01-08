@@ -192,6 +192,46 @@ const deleteProduct = async (productId: string) => {
   }
 };
 
+const updateProduct = async ({
+  id,
+  content,
+  imageChange,
+}: {
+  id: string;
+  content: PostProductInterface;
+  imageChange: boolean;
+}) => {
+  let imageUrl = null;
+
+  if (content.images && imageChange) {
+    // 이미지 업로드 후 URL 받기
+    imageUrl = await uploadImage(content.images[0]);
+    content.images = imageUrl ? [imageUrl] : [];
+  }
+
+  try {
+    const response = await retryFetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/products/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify(content),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("상품 업데이트 실패");
+    }
+
+    return response.json();
+  } catch (error) {
+    throw error;
+  }
+};
+
 const postComment = async (id: string, { content }: { content: string }) => {
   try {
     const response = await retryFetch(
@@ -261,6 +301,7 @@ export {
   fetchInquiryById,
   postProduct,
   deleteProduct,
+  updateProduct,
   postComment,
   updateComment,
   deleteComment,
